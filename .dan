@@ -8,3 +8,5 @@ nvim = /home/an/.config/nvim
 rofi = /home/an/.config/rofi
 waybar = /home/an/.config/waybar
 starship.toml = /home/an/.config/starship.toml
+fonts = /home/an/.local/share/fonts
+themes = /home/an/.local/share/themes
