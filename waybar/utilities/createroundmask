@@ -1,0 +1,3 @@
+#! /bin/bash
+
+convert -size 720x720 xc:none -fill white -draw "roundrectangle 0,0,720,720,20,20" before.png mask.png

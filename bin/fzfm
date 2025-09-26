@@ -1,0 +1,38 @@
+#! /usr/bin/env bash
+# fzf-based file manager
+# dependencies: fzf, bat, chafa, eza
+
+function fzfm (){
+    while true; do
+        selection="$(command ls -a | fzf \
+                   --reverse \
+                   --height 100% \
+                   --info right \
+                   --prompt "Search: " \
+                   --border "bold" \
+                   --border-label "$(pwd)/" \
+                   --bind "ctrl-h:pos(2)+accept" \
+                   --bind "ctrl-l:accept" \
+                   --bind "shift-up:preview-down" \
+                   --bind "shift-down:preview-up" \
+                   --preview-window=right:65% \
+                   --preview 'cd_pre="$(echo $(pwd)/{})";
+                           echo "Folder: " $cd_pre;
+                           echo;
+                           command eza -la --icons=always --color=always --no-filesize --no-time --no-user --no-permissions "${cd_pre}";
+                           txt_file="$(file {} | grep '[Tt]ext' | wc -l)"
+                           if [[ "${txt_file}" -eq 1 ]]; then
+                               bat --style=numbers --theme=ansi --color=always {} 2>/dev/null
+                           else
+                               chafa -c full --color-space rgb --dither none -p on -w 9 2>/dev/null {}
+                           fi'
+        )"
+        if [[ -d "${selection}" ]]; then
+            >/dev/null cd "${selection}"
+        else
+            break
+        fi
+    done
+}
+clear
+fzfm

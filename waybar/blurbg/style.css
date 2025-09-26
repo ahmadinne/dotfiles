@@ -1,0 +1,5 @@
+@define-color blurbg #000000;
+window#waybar {
+  background-color: alpha(@blurbg, 0.1);
+  color: transparent;
+}

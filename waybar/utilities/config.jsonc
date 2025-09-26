@@ -1,0 +1,233 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "exclusive": false,
+    "margin-bottom": 5,
+    "spacing": 0,
+    // "height": 50,
+    "width": 300,
+	"expand-center": true,
+	// "expand-left": true,
+	// "expand-right": true,
+
+    "modules-left": [],
+    "modules-center": [
+		// "custom/empty",
+		"group/left",
+		"group/music"
+	],
+    "modules-right": [],
+
+    "custom/empty": {
+        "format": "{}",
+        "tooltip": false,
+        "exec": "$HOME/.config/waybar/utilities/media.sh image"
+    },
+
+	"group/left": {
+		"orientation": "vertical",
+		"modules": [
+			"group/profile",
+			"group/slider",
+			"group/boxes"
+		]
+	},
+
+	"group/slider": {
+		"orientation": "vertical",
+		"modules": [
+			"group/audio",
+			"group/brightness"
+		]
+	},
+
+	"group/audio": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/audio",
+			"pulseaudio/slider"
+		]
+	},
+	"custom/audio": {
+		"format": "    ",
+		"tooltip": false
+	},
+	"pulseaudio/slider": {
+		"min": 0,
+		"max": 100,
+		"orientation": "horizontal"
+	},
+
+	"group/brightness": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/brightness",
+			"backlight/slider"
+		]
+	},
+	"custom/brightness": {
+		"format": "    ",
+		"tooltip": false
+	},
+	"backlight/slider": {
+		"min": 0,
+		"max": 100,
+		"orientation": "horizontal"
+	},
+
+
+	"group/boxes": {
+		"orientation": "vertical",
+		"modules": [
+			"group/boxatas",
+			"group/boxtengah"
+		]
+	},
+	"group/boxatas": {
+		"orientation": "horizontal",
+		"modules": [
+			"network",
+			"bluetooth",
+			"custom/screenshot"
+		]
+	},
+	"group/boxtengah": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/clipboard",
+			"custom/colorpicker",
+			"custom/screenrecord"
+		]
+	},
+
+	"network": {
+		"format": "    ",
+		"tooltip-format": "{ifname}",
+		// "format-icons": [
+		// 	"󰤯",
+		// 	"󰤟",
+		// 	"󰤢",
+		// 	"󰤥",
+		// 	"󰤨"
+		// ]
+	},
+	"bluetooth": {
+		"format": "    ",
+		// "format-icons": [ "    " ]
+	},
+	"custom/screenshot": {
+		"format": "    ",
+		"tooltip-format": "screenshot",
+		"on-click": "$HOME/.config/bash/screenshot bar",
+		"on-click-right": "$HOME/.config/bash/screenshot bar2"
+	},
+	"custom/clipboard": {
+		"format": "    ",
+		"tooltip-format": "clipboard",
+		"on-click": "$HOME/.config/bash/clipboard"
+	},
+	"custom/colorpicker": {
+		"format": "    ",
+		"tooltip-format": "colorpicker",
+		"on-click": "$HOME/.config/bash/colorpicker pick",
+		"on-click-right": "$HOME/.config/bash/colorpicker pick2"
+	},
+	"custom/screenrecord": {
+		"format": "    ",
+		"tooltip-format": "screenrecord",
+		"on-click": "$HOME/.config/bash/screenrecord record",
+		"on-click-right": "$HOME/.config/bash/screenrecord record2",
+		"return-type": "json",
+		"exec": "$HOME/.config/waybar/utilities/media.sh screenrecord"
+	},
+
+
+	"group/profile": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/username",
+			"custom/wmname"
+		]
+	},
+	"custom/username": {
+		"format": "{}",
+		"tooltip": false,
+		"justify": "center",
+		"exec": "echo $(whoami)"
+	},
+	"custom/wmname": {
+		"format": "{}",
+		"tooltip": false,
+		"justify": "center",
+		"exec": "$HOME/.config/waybar/utilities/media.sh wmname"
+	},
+
+
+	"group/music": {
+		"orientation": "vertical",
+		"modules": [
+			"image#thumbnail",
+			"group/text"
+		]
+	},
+
+    "image#thumbnail": {
+        "path": "/tmp/mediathumbnail",
+        "size": 148,
+        "signal": 4,
+        "interval": 5,
+        "on-click": "gthumb /tmp/fullthumbnail"
+    },
+
+    "group/text": {
+        "orientation": "vertical",
+        "modules": [
+            "custom/title",
+            "custom/artist",
+			"custom/progress",
+			"group/button"
+        ]
+    },
+
+	"group/button": {
+		"orientation": "horizontal",
+		"align": "center",
+		"modules": [
+			"custom/prev",
+			"custom/play",
+			"custom/next"
+		]
+	},
+
+	"custom/title": {
+		"format": "{}",
+		"return-type": "json",
+		"exec": "$HOME/.config/waybar/utilities/title.sh",
+		"tooltip": false,
+		"justify": "center"
+	},
+
+	"custom/artist": {
+		"format": "{}",
+		"tooltip": false,
+		"exec": "$HOME/.config/waybar/utilities/media.sh artist"
+	},
+
+    "custom/prev": {
+        "format": "    ",
+        "tooltip": false,
+        "on-click": "playerctl previous"
+    },
+    "custom/play": {
+        "format": "    ",
+        "tooltip": false,
+		"return-type": "json",
+		"exec": "$HOME/.config/waybar/utilities/media.sh button",
+		"on-click": "playerctl play-pause"
+    },
+    "custom/next": {
+        "format": "    ",
+        "tooltip": false,
+        "on-click": "playerctl next"
+    }
+}

@@ -1,0 +1,30 @@
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.primary]
+  background = '0x151515'
+  foreground =  '0xE8E3E3'
+
+[colors.cursor]
+  text = '0x141b1e'
+  cursor = '0x8C977D'
+
+[colors.normal]
+  black =   '0x151515'
+  red =     '0xB66467'
+  green =   '0x8C977D'
+  yellow =  '0xD9BC8C'
+  blue =    '0x8DA3B9'
+  magenta = '0xA988B0'
+  cyan =    '0x8AA6A2'
+  white =   '0xE8E3E3'
+
+[colors.bright]
+  black =   '0x424242'
+  red =     '0xB66467'
+  green =   '0x8C977D'
+  yellow =  '0xD9BC8C'
+  blue =    '0x8DA3B9'
+  magenta = '0xA988B0'
+  cyan =    '0x8AA6A2'
+  white =   '0xE8E3E3'

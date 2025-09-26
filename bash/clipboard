@@ -1,0 +1,4 @@
+#!/bin/bash
+barid=$(ps -ef | grep '[w]aybar -c' | grep utilities | awk '{print $2}')
+kill $barid
+cliphist list | rofi -dmenu | cliphist decode | wl-copy

@@ -1,0 +1,44 @@
+* {
+	font-family: Iosevka Medium;
+    font-size: 11.5px;
+}
+
+@define-color satu #181818;
+@define-color dua #1B1B1B;
+@define-color tiga #252525;
+@define-color empat #1C1C1C;
+@define-color black #101010;
+@define-color dark-gray #151515;
+@define-color gray #353535;
+@define-color white #e8e3e3;
+@define-color blue #8da3b9;
+@define-color cyan #8aa6a2;
+@define-color red #b66467;
+@define-color green #8c977d;
+@define-color yellow #d9bc8c;
+@define-color purple #a988b0;
+
+@define-color background @black;
+@define-color foreground @white;
+
+@define-color module-bg @dua;
+@define-color module-hover alpha(@foreground, 0.1);
+
+@define-color bright-black #424242;
+@define-color bright-red #b66467;
+@define-color bright-green #8c977d;
+@define-color bright-yellow #d9bc8c;
+@define-color bright-blue #8da3b9;
+@define-color bright-magenta #a988b0;
+@define-color bright-cyan #8aa6a2;
+@define-color bright-white #e8e3e3;
+
+tooltip {
+    background-color: @background;
+    border: 2px solid @module-bg;
+    border-radius: 3;
+}
+tooltip label {
+    color: @white;
+    padding: 5;
+}

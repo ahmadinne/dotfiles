@@ -1,0 +1,11 @@
+#!/bin/bash
+selection=$1
+
+if [ "$selection" = pick ]; then
+	barid=$(ps -ef | grep '[w]aybar -c' | grep utilities | awk '{print $2}')
+	kill $barid
+	sleep 0.5
+	hyprpicker -a
+elif [ "$selection" = pick2 ]; then
+	hyprpicker -a
+fi

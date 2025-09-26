@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Increment, decrement, or mute the volume using Pipewire and send a notification
+
+case $1 in
+	inc|up)
+		# Set the volume on (if it was muted)
+		wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+		wpctl set-volume -l 2.0 @DEFAULT_AUDIO_SINK@ 5%+
+		;;
+	dec|down)
+		wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+		wpctl set-volume -l 2.0 @DEFAULT_AUDIO_SINK@ 5%-
+		;;
+	mute)
+		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+		;;
+esac
+
+VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc '0-9' | sed 's/^0\{1,2\}//')
+
+
+send_notification() {
+	waybar \
+		-c ~/.config/waybar/control/volume/config.jsonc \
+		-s ~/.config/waybar/control/volume/style.css & disown \
+		&& sleep 0.5 \
+		&& kill $!
+}
+mute_notification(){
+	waybar \
+		-c ~/.config/waybar/control/volume/config.jsonc \
+		-s ~/.config/waybar/control/volume/style.css & disown \
+		&& sleep 0.5 \
+		&& kill $!
+}
+
+case $1 in
+	mute)
+        status=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}')
+		case $status in
+			*MUTED* ) mute_notification;;
+			*       ) send_notification;;
+		esac;;
+	*)
+		send_notification;;
+esac

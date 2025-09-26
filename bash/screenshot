@@ -1,0 +1,74 @@
+#!/bin/bash
+
+
+# ---- Config ----
+choice=$1
+path="$HOME/Pictures/Screenshots"
+tempdir="/tmp/screenshots"
+mkdir -p "$tempdir"
+file="$(mktemp -p "$tempdir" "XXXXXX.png")"
+format=$(date +'%Y.%m.%d_%A[%H:%M:%S].png')
+
+
+# ---- Mission Starto -----
+if [ ! -d "$path" ]; then
+  mkdir -p $HOME/Pictures/Screenshots
+fi
+
+screen() {
+	grim "$file"
+	cp -rf "$file" "$HOME/Pictures/Screenshots/${format}"
+	wl-copy -t image/png < "$file"
+	if [ $? -eq 0 ]; then
+		notify-send --urgency=low --transient -i "$file" "📷 Screenshot Captured!" "Image copied to clipboard and saved to $file" -r 9005 -t 2000
+	else
+		notify-send --urgency=low --transient "Failed to screenshot!" -r 9005 -t 2000
+	fi
+}
+
+window() {
+  activewindow1=$(hyprctl activewindow | grep at: | awk '{print $2}')
+  activewindow2=$(hyprctl activewindow | grep size: | awk '{print $2}' | sed 's/,/x/')
+  grim -g "$activewindow1 $activewindow2" "$file"
+  cp -rf "$HOME/Pictures/Screenshots/Region-${format}"
+  wl-copy -t image/png < "$file"
+	if [ $? -eq 0 ]; then
+		notify-send --urgency=low --transient -i "$file" "📷 Windowshot Captured!" "Image copied to clipboard and saved to $file" -r 9005 -t 2000
+	else
+		notify-send --urgency=low --transient "❗There's no Active Window!" -r 9005 -t 2000
+	fi
+}
+
+bar() {
+	barid=$(ps -ef | grep '[w]aybar -c' | grep utilities | awk '{print $2}')
+	kill $barid
+	sleep 0.5
+	grim "$file"
+	cp -rf "$file" "$HOME/Pictures/Screenshots/${format}"
+	wl-copy -t image/png < "$file"
+	if [ $? -eq 0 ]; then
+		notify-send --urgency=low --transient -i "$file" "📷 Screenshot Captured!" "Image copied to clipboard and saved to $file" -r 9005 -t 2000
+	else
+		notify-send --urgency=low --transient "Failed to screenshot!" -r 9005 -t 2000
+	fi
+}
+
+bar2() {
+	grim "$file"
+	cp -rf "$file" "$HOME/Pictures/Screenshots/${format}"
+	wl-copy -t image/png < "$file"
+	if [ $? -eq 0 ]; then
+		notify-send --urgency=low --transient -i "$file" "📷 Screenshot Captured!" "Image copied to clipboard and saved to $file" -r 9005 -t 2000
+	else
+		notify-send --urgency=low --transient "Failed to screenshot!" -r 9005 -t 2000
+	fi
+}
+
+case $choice in
+	scr) screen ;;
+	win) window ;;
+	bar) bar ;;
+	bar2) bar2 ;;
+	screen) screen ;;
+	window) window ;;
+esac

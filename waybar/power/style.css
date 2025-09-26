@@ -1,0 +1,109 @@
+* {
+	font-family: "Symbols Nerd Font", "Iosevka Medium";
+	font-size: 11px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 16px;
+}
+
+@import "../colors.css";
+
+window#waybar {
+    background-color: transparent;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar > box {
+    background-color: transparent;
+    margin: 5px;
+}
+
+.modules-right {
+	background-color: @background;
+	border-radius: 6px;
+	padding: 5px;
+}
+
+/* MIDDLE GROUPS */
+#middle {
+	background-color: @module-bg;
+	border-radius: 4px;
+	padding: 5px;
+	margin: 5px;
+}
+
+#cpu,
+#temperature,
+#memory,
+#disk {
+	padding: 5px;
+}
+
+#custom-cpu,
+#custom-temperature,
+#memory.logo,
+#disk.logo {
+	background-color: @empat;
+	padding: 20px;
+	border-radius: 3 3 0 0px;
+}
+
+#cpu.text,
+#temperature.text,
+#memory.text,
+#disk.text {
+	background-color: @tiga;
+	font-weight: bold;
+	padding: 2 0px;
+	border-radius: 0 0 3 3px;
+}
+
+#custom-cpu { 
+	background-image: url('../svg/cpu.svg');
+}
+#custom-temperature { 
+	background-image: url('../svg/temperature.svg');
+}
+#memory.logo {
+	background-image: url('../svg/memory.svg');
+}
+#disk.logo {
+	background-image: url('../svg/hard-drives.svg');
+}
+
+#custom-cpu.default,
+#custom-temperature.default { background-color: @blue; }
+
+#custom-cpu.mid,
+#custom-temperature.mid { background-color: @green; }
+
+#custom-cpu.warning,
+#custom-temperature.warning { background-color: @yellow; }
+
+#custom-cpu.critical,
+#custom-temperature.critical { background-color: @red; }
+
+
+
+#bottom {
+	background-color: @module-bg;
+	border-radius: 4px;
+	padding: 10px;
+	margin: 5px;
+}
+#custom-pptext {
+	margin-top: 10px;
+	font-weight: bold;
+}
+#power-profiles-daemon.powersaver,
+#power-profiles-daemon.balanced,
+#power-profiles-daemon.performance {
+	background-color: @tiga;
+	border-radius: 4px;
+	padding: 12px;
+}
+#power-profiles-daemon.balanced {
+	margin: 0 10px;
+}

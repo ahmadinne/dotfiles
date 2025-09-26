@@ -1,0 +1,71 @@
+* {
+    font-family: "Symbols Nerd Font", "gg sans Medium", "Iosevka Medium";
+    font-weight: bold;
+    font-size: 12px;
+}
+
+@import "../colors.css";
+
+/* Base (Window) */
+window#waybar {
+  /* background-color:     @background; */
+  background-color:     transparent;
+  color:                @foreground;
+}
+window#waybar > box {
+  margin:               0 5 5 5;
+  /* padding:              0 5; */
+}
+
+/* Main Group */
+#top,
+#center,
+#right {
+  background-color:     @background; /* @module-bg */
+  padding:              0 0;
+}
+
+/* Things */
+#custom-split { color:  @module-hover; } 
+
+#custom-utilities,
+#custom-launcher {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 12px;
+	transition:		all 0.3s ease-in-out;
+	padding: 0 8px
+}
+#custom-utilities { background-image: url("../svg/leaf.svg"); }
+#custom-launcher { background-image: url("../svg/search.svg"); }
+
+#custom-workspace,
+#battery,
+#clock,
+#trayer {
+  padding:              0 10; 
+  transition:           all 0.3s ease-in-out;
+}
+
+#custom-utilities:hover,
+#custom-launcher:hover,
+#workspaces:hover,
+#battery:hover,
+#clock:hover,
+#trayer:hover {
+  background-color:     @module-hover;
+}
+#custom-tray {
+	font-size: 6px;
+	background-image: url("../svg/chevron-left.svg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#tray { margin: 0 10; }
+#tray > widget { padding: 0 10;}
+
+#workspaces {
+  padding: 		0 0;
+  transition:           all 0.3s ease-in-out;
+}

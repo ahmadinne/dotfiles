@@ -1,0 +1,10 @@
+alacritty = /home/an/.config/alacritty
+bash = /home/an/.config/bash
+bin = /home/an/.config/bin
+dan = /home/an/.config/dan
+dunst = /home/an/.config/dunst
+hypr = /home/an/.config/hypr
+nvim = /home/an/.config/nvim
+rofi = /home/an/.config/rofi
+waybar = /home/an/.config/waybar
+starship.toml = /home/an/.config/starship.toml

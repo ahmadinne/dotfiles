@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+
+while [ true ]; do
+	for bat in /sys/class/power_supply/BAT*; do
+		ONE=6; TWO=12; THR=20; FOR=80; 
+		level=$(< $bat/capacity)
+		[[ $level -le $ONE ]] && grep -c "Discharging" ${bat}/status \
+			&& notify-send "Battery under ${ONE}%" "Going to sleep in 1 minutes." -i "battery-caution" --urgency=critical && sleep 60 && systemctl suspend
+		[[ $level -le $TWO ]] && grep -c "Discharging "${bat}/status \
+			&& notify-send "Battery under ${TWO}%" "Please plug in the adapter" -i "battery-low" --urgency=critical
+		[[ $level -le $THR ]] && grep -c "Discharging "${bat}/status \
+			&& notify-send "Battery under ${THR}%" "Please plug in the adapter" -i "battery-low" --urgency=critical
+		[[ $level -gt $FOR ]] && grep -c "Charging "${bat}/status \
+			&& notify-send "Battery above $FOR" "Please remove the adapter" -i "battery-full-charging" --urgency=critical
+	done
+	sleep 300
+done
+

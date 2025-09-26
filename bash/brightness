@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+send_notification() {
+	waybar \
+		-c ~/.config/waybar/control/brightness/config.jsonc \
+		-s ~/.config/waybar/control/brightness/style.css & disown \
+		&& sleep 0.5 \
+		&& kill $!
+}
+
+case $1 in
+	inc|up)
+		brightnessctl set 5%+
+		send_notification
+		;;
+	dec|down)
+		brightnessctl set 5%-
+		send_notification
+		;;
+esac

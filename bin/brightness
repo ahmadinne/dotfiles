@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+cur_val=$(cat /sys/class/backlight/*/brightness)
+max_val=$(cat /sys/class/backlight/*/max_brightness)
+percentage=$((cur_val * 100 / max_val))
+
+echo ${percentage}%
+

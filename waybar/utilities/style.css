@@ -1,0 +1,244 @@
+* {
+  font-size: 11px;
+}
+
+@import "../colors.css";
+
+window#waybar {
+  background-color: transparent;
+  color: @foreground;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+window#waybar > box {
+  background-color: @background;
+  border-radius: 6;
+  padding: 5;
+}
+
+#left {
+	/* margin: 5; */
+}
+
+#profile {
+	background-color: @module-bg;
+	border-radius: 3;
+	padding: 10 0;
+	margin: 5;
+	font-weight: bold;
+}
+#custom-wmname {
+	color: alpha(@foreground, 0.5)
+}
+
+#boxes {
+	background-color: @module-bg;
+	border-radius: 3;
+	padding:  10;
+	margin: 5;
+}
+#boxtengah {
+	margin: 11 0 1 0;
+}
+
+#custom-pfp {
+	font-size: 24px;
+	background-image: url('../svg/pfp.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 24px;
+}
+#custom-pfp:hover {
+	background-color: alpha(@foreground, 0.1);
+}
+
+#network,
+#bluetooth,
+#custom-screenshot,
+#custom-clipboard,
+#custom-colorpicker,
+#custom-screenrecord {
+	background-color: @tiga;
+	border-radius: 4;
+	padding: 12 8;
+	margin: 0 10 0 0;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 16px;
+	transition: .1s ease-in-out;
+}
+
+#custom-screenrecord {
+	margin-right: 0;
+	background-image: url('../svg/video.svg');
+}
+#custom-screenrecord.recording {
+	margin-right: 0; 
+	background-color: alpha(@red, 1);
+	background-image: url('../svg/circle.svg');
+}
+#custom-screenrecord.recording:hover {
+	background-color: alpha(@red, 0.8);
+}
+
+#network {
+	background-image: url('../svg/wifi.svg');
+}
+#network.linked, #network.ethernet, #network.wifi {
+	background-color: alpha(@foreground, 0.2);
+}
+#bluetooth {
+	background-image: url('../svg/bluetooth.svg');
+}
+#custom-screenshot {
+	margin-right: 0;
+	background-image: url('../svg/scan.svg');
+}
+#custom-clipboard {
+	background-image: url('../svg/clipboard-list.svg');
+}
+#custom-colorpicker {
+	background-image: url('../svg/pipette.svg');
+}
+
+#network:hover,
+#bluetooth:hover,
+#custom-screenshot:hover,
+#custom-clipboard:hover,
+#custom-colorpicker:hover,
+#custom-screenrecord:hover {
+	background-color: alpha(@foreground, 0.1);
+}
+
+#slider {
+	background-color: @module-bg;
+	border-radius: 3;
+	padding: 3 8;
+	margin: 5;
+}
+
+#brightness {
+	margin: -5 0 0 0;
+}
+#custom-audio,
+#custom-brightness {
+	margin: 0 5 0 0;
+}
+#custom-audio {
+	background-image: url('../svg/music.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 14px;
+}
+#custom-brightness {
+	background-image: url('../svg/moon.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 14px;
+}
+
+#pulseaudio-slider slider,
+#backlight-slider slider {
+	min-height: 0px;
+	min-width: 0px;
+	opacity: 0;
+	border-radius: 0;
+	background-color: transparent;
+}
+#pulseaudio-slider trough,
+#backlight-slider trough {
+	min-height: 15px;
+	min-width: 113px;
+	border-radius: 4px;
+	background-color: alpha(@foreground, 0.05);
+}
+#pulseaudio-slider highlight,
+#backlight-slider highlight {
+	min-width: 0px;
+	border-radius: 4px;
+	background-color: @foreground;
+}
+
+#music {
+	background-color: @module-bg;
+	border-radius: 3;
+	padding: 10;
+	margin: 5;
+}
+
+#image.thumbnail {
+  border-radius: 10;
+}
+#image.pfp {
+	border-radius: 0;
+}
+
+#text {
+  color: @foreground;
+  padding: 10 0 0 0;
+  margin-top: 0;
+}
+#custom-title {
+	color: @foreground;
+  font-weight: bold;
+}
+#custom-artist {
+  color: alpha(@foreground, 0.5);
+  font-weight: bold;
+  margin: 5 0 0 0;
+  background-image: none;
+}
+
+
+/* buttons */
+#button {
+	margin: 10 0 0 18;
+}
+
+#custom-prev,
+#custom-next {
+  color: alpha(@foreground, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+#custom-prev {
+	background-image: url('../svg/skip-back.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 12px;
+}
+#custom-next {
+	background-image: url('../svg/skip-forward.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 12px;
+}
+#custom-prev:hover,
+#custom-next:hover {
+  /* background-color: @module-bg; */
+  color: @foreground;
+}
+
+#custom-play {
+	color: alpha(@foreground, 0.7);
+	transition: all 0.3s ease-in-out;
+	padding: 0 20;
+	background-image: url('../svg/play.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 14px;
+}
+#custom-play.paused {
+	background-image: url('../svg/play.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 14px;
+}
+#custom-play.playing {
+	background-image: url('../svg/pause.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 14px;
+}
+#custom-play:hover {
+  color: @foreground;
+}

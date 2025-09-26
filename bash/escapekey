@@ -1,0 +1,6 @@
+#!/bin/bash
+barid=$(ps -ef | grep '[w]aybar -c' | grep -v base | grep -v bar2 | awk '{print $2}')
+for bar in ${barid[@]}; do
+	kill $bar
+	ydotool key 1:27 0:27
+done

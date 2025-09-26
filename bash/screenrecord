@@ -1,0 +1,55 @@
+#!/bin/bash
+
+
+# ---- Config ----
+selection=$1
+output=$(pactl list sources | grep Name | grep output | awk '{print $2}')
+format=$(date +'%Y.%m.%d_%A[%H:%M:%S].mp4')
+path="$HOME/Videos/Screenrecords"
+
+
+# ---- Mission Starto ----
+if [ ! -d "$path" ]; then
+	mkdir -p $path
+fi
+
+
+if [ "$selection" = record ]; then
+	barid=$(ps -ef | grep '[w]aybar -c' | grep power | awk '{print $2}')
+	id=$(ps -ef | grep '[w]f-recorder'| awk '{print $2}')
+	if [ "$id" ]; then
+		kill $id
+		if [ $? -eq 0 ]; then
+			notify-send --urgency=low --transient "Screenrecord stopped." -r 9005 -t 2000
+		else
+			echo "error"
+		fi
+	else
+		kill $barid
+		sleep 0.5
+		wf-recorder --audio=$output -f ${path}/${format} > /dev/null 2>&1 &
+		if [ $? -eq 0 ]; then
+			notify-send --urgency=low --transient "Screenrecord started!" -r 9005 -t 2000
+		else
+			echo "error"
+		fi
+	fi
+
+elif [ "$selection" = record2 ]; then
+	id=$(ps -ef | grep '[w]f-recorder'| awk '{print $2}')
+	if [ "$id" ]; then
+		kill $id
+		if [ $? -eq 0 ]; then
+			notify-send --urgency=low --transient "Screenrecord stopped." -r 9005 -t 2000
+		else
+			echo "error"
+		fi
+	else
+		wf-recorder --audio=$output -f ${path}/${format} > /dev/null 2>&1 &
+		if [ $? -eq 0 ]; then
+			notify-send --urgency=low --transient "Screenrecord started!" -r 9005 -t 2000
+		else
+			echo "error"
+		fi
+	fi
+fi

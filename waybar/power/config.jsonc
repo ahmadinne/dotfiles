@@ -1,0 +1,132 @@
+{
+    "layer": "top",
+    "exclusive": false,
+    "position": "right",
+    "spacing": 0,
+
+    "modules-left": [],
+    "modules-center": [],
+    "modules-right": [
+		"group/middle",
+        "group/bottom"
+    ],
+
+
+	// Groups
+	"group/middle": {
+		"orientation": "inherit",
+		"modules": [
+			"group/middleone",
+			"group/middletwo"
+		]
+	},
+	"group/middleone": {
+		"orientation": "horizontal",
+		"modules": [
+			"group/cpu",
+			"group/temperature"
+		]
+	},
+	"group/middletwo": {
+		"orientation": "horizontal",
+		"modules": [
+			"group/memory",
+			"group/disk"
+		]
+	},
+
+	"group/cpu": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/cpu",
+			"cpu#text"
+		]
+	},
+	"custom/cpu": {
+		"format": "    ",
+		"tooltip": false,
+		"return-type": "json",
+		"exec": "$HOME/.config/waybar/power/cpu.sh"
+	},
+	"cpu#text": {
+		"interval": 1,
+		"format": "{usage}%"
+	},
+
+	"group/temperature": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/temperature",
+			"temperature#text"
+		]
+	},
+	"custom/temperature": {
+		"format": "    ",
+		"tooltips": false,
+		"return-type": "json",
+		"exec": "$HOME/.config/waybar/power/temp.sh"
+	},
+	"temperature#text": {
+		"format": "{temperatureC}°C"
+	},
+
+	"group/memory": {
+		"orientation": "vertical",
+		"modules": [
+			"memory#logo",
+			"memory#text"
+		]
+	},
+	"memory#logo": {
+		"format": "    ",
+		"tooltips": false
+	},
+	"memory#text": {
+		"format": "{percentage}%"
+	},
+
+	"group/disk": {
+		"orientation": "vertical",
+		"modules": [
+			"disk#logo",
+			"disk#text"
+		]
+	},
+	"disk#logo": {
+		"format": "    ",
+		"tooltips": false
+	},
+	"disk#text": {
+		"format": "{percentage_used}%"
+	},
+
+	
+
+	"group/bottom": {
+		"orientation": "inherit",
+		"modules": [ 
+			"group/powerprofiles",
+			"custom/pptext"
+		]
+	},
+	"group/powerprofiles": {
+		"orientation": "horizontal",
+		"modules": [
+			"power-profiles-daemon#powersaver",
+			"power-profiles-daemon#balanced",
+			"power-profiles-daemon#performance"
+		]
+	},
+	"custom/pptext": {
+		"format": "power profiles"
+	},
+	"power-profiles-daemon#powersaver": {
+		"format": "PS"
+	},
+	"power-profiles-daemon#balanced": {
+		"format": "BL"
+	},
+	"power-profiles-daemon#performance": {
+		"format": "PF"
+	}
+}
