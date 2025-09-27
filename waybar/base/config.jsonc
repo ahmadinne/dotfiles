@@ -49,10 +49,8 @@
   },
 
   "custom/workspace": {
-    "format":           "{}",
-    "return-type":      "bash",
-    "tooltip":          false,
-    "exec":             "bash $HOME/.config/waybar/base/workspaces.sh"
+    "format":           "prd",
+    "tooltip":          false
   },
 
   "hyprland/workspaces": {
@@ -103,7 +101,7 @@
 	"format":			"{:%H:%M}",
 	"tooltip":			false,
 	"on-click":			"bash $HOME/.config/waybar/calendar/exec.sh"
-  },
+  }
 },
 
 

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+choice=$1
+checks=$(ps -ef | grep waybar)
+
+if [ $choice = longer ]; then
+	sleeps=2.5
+else
+	sleeps=0.5
+fi
+
+spawnbar(){
+	waybar \
+		-c ~/.config/waybar/control/workspace/config.jsonc \
+		-s ~/.config/waybar/control/workspace/style.css & disown \
+		&& sleep $sleeps \
+		&& kill $!
+}
+
+# switch workspace
+if [ $choice = switch ]; then 
+	hyprctl dispatch workspace $2 > /dev/null 2>&1
+	spawnbar
+fi
+
+# move window into workspace
+if [ $choice = moveto ]; then 
+	hyprctl dispatch movetoworkspace $2 > /dev/null 2>&1
+	spawnbar
+fi
+
+# awhile but longer
+if [ $choice = longer ]; then
+	spawnbar
+fi
+
+# toggle
+if [ $choice = toggle ]; then 
+	barid=$(ps -ef|grep '[w]aybar -c'|grep normal|awk '{print $2}')
+	[[ $barid ]]; kill $barid || waybar \
+		-c ~/.config/waybar/normal/config.jsonc \
+		-s ~/.config/waybar/normal/style.css & disown
+fi

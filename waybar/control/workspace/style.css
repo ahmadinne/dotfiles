@@ -1,0 +1,35 @@
+* {
+    font-family:		"";
+    font-weight:		bold;
+    font-size:			12px;
+}
+
+@import "../../colors.css";
+
+/* Base (Window) */
+window#waybar {
+  background-color:		transparent;
+}
+window#waybar > box {
+	background:			transparent;
+	margin:				20px;
+}
+
+.modules-center {
+	background:			@background;
+	color:				@foreground;
+	border-radius:		2px;
+	padding:            7px 13px; 
+	transition:         all 0.3s ease-in-out;
+}
+
+/* Things */
+#battery,
+#clock {}
+
+#battery:hover,
+#clock:hover {
+  background-color:     @module-hover;
+}
+
+#custom-workspace {}
