@@ -6,8 +6,9 @@
   "spacing":            0,
   "margin-top":         0,
   "fixed-center":       true,
+  "exclusive":			true,
 
-  "modules-left":       [ "custom/empty", "group/top" ],
+  "modules-left":       [ "custom/empty", "group/top", "hyprland/window"],
   "modules-center":     [ "group/center" ],
   "modules-right":      [ "group/right" ],
 
@@ -19,7 +20,7 @@
 	},
   "group/top": {
     "orientation":      "inherit",
-    "modules":          [ "clock", "custom/split", "group/workspaces" ]
+    "modules":          [ "clock", "custom/split", "group/workspaces"]
   },
   "group/center": {
     "orientation":      "inherit",
@@ -103,6 +104,10 @@
 	"format":			"{:%H:%M}",
 	"tooltip":			false,
 	"on-click":			"bash $HOME/.config/waybar/calendar/exec.sh"
+  },
+
+  "hyprland/window": {
+	  "max-length": 31
   }
 },
 

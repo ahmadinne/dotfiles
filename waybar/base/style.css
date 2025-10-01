@@ -1,5 +1,5 @@
 * {
-    font-family: "Symbols Nerd Font", "gg sans Medium", "Iosevka Medium";
+    font-family: "Symbols Nerd Font", "gg sans Medium", "Liberation Mono";
     font-weight: bold;
     font-size: 12px;
 }
@@ -8,14 +8,35 @@
 
 /* Base (Window) */
 window#waybar {
-  /* background-color:     @background; */
   background-color:     transparent;
   color:                @foreground;
 }
 window#waybar > box {
-  margin:               0 5 5 5;
-  /* padding:              0 5; */
+	background:			@background;
+	/* margin:				0px 5px 5px 5px; */
 }
+
+window#waybar.empty,
+window#waybar.floating,
+window#waybar.floating >box,
+window#waybar.empty > box {
+	background:			transparent;
+	margin:				0px 5px 5px 5px;
+}
+
+window#waybar.solo {}
+window#waybar.fullscreen {}
+window#waybar.swallowing {}
+
+window#waybar #window {
+	color:				transparent;
+}
+
+/* window#waybar.empty #clock { */
+/* 	background:			transparent; */
+/* 	color:				@green; */
+/* } */
+
 
 /* Main Group */
 #top,
