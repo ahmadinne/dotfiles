@@ -1031,278 +1031,278 @@ style "default" {
 
     # Horizontal sliders
 
-    image {
-      function    = SLIDER
-      state       = NORMAL
-      detail      = "slider"
-      file        = "assets/scrollbar-horz-slider.png"
-      border      = {8, 8, 9, 8 }
-      stretch     = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function    = SLIDER
-      state       = PRELIGHT
-      detail      = "slider"
-      file        = "assets/scrollbar-horz-slider-hover.png"
-      border      = {8, 8, 9, 8 }
-      stretch     = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function    = SLIDER
-      state       = ACTIVE
-      detail      = "slider"
-      file        = "assets/scrollbar-horz-slider-active.png"
-      border      = {8, 8, 9, 8 }
-      stretch     = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function    = SLIDER
-      state       = INSENSITIVE
-      detail      = "slider"
-      file        = "assets/scrollbar-horz-slider-disabled.png"
-      border      = {8, 8, 9, 8 }
-      stretch     = TRUE
-      orientation = HORIZONTAL
-    }
-
-    # Vertical sliders
-
-    image {
-      function    = SLIDER
-      state       = NORMAL
-      detail      = "slider"
-      file        = "assets/scrollbar-vert-ltr-slider.png"
-      border      = {9, 8, 8, 8}
-      stretch     = TRUE
-      orientation = VERTICAL
-      direction   = LTR
-    }
-
-    image {
-      function    = SLIDER
-      state       = PRELIGHT
-      detail      = "slider"
-      file        = "assets/scrollbar-vert-ltr-slider-hover.png"
-      border      = {9, 8, 8, 8}
-      stretch     = TRUE
-      orientation = VERTICAL
-      direction   = LTR
-    }
-
-    image {
-      function    = SLIDER
-      state       = ACTIVE
-      detail      = "slider"
-      file        = "assets/scrollbar-vert-ltr-slider-active.png"
-      border      = {9, 8, 8, 8}
-      stretch     = TRUE
-      orientation = VERTICAL
-      direction   = LTR
-    }
-
-    image {
-      function    = SLIDER
-      state       = INSENSITIVE
-      detail      = "slider"
-      file        = "assets/scrollbar-vert-ltr-slider-disabled.png"
-      border      = {9, 8, 8, 8}
-      stretch     = TRUE
-      orientation = VERTICAL
-      direction   = LTR
-    }
-
-    # RTL
-
-    image {
-      function    = SLIDER
-      state       = NORMAL
-      detail      = "slider"
-      file        = "assets/scrollbar-vert-rtl-slider.png"
-      border      = {8, 9, 8, 8}
-      stretch     = TRUE
-      orientation = VERTICAL
-      direction   = RTL
-    }
-
-    image {
-      function    = SLIDER
-      state       = PRELIGHT
-      detail      = "slider"
-      file        = "assets/scrollbar-vert-rtl-slider-hover.png"
-      border      = {8, 9, 8, 8}
-      stretch     = TRUE
-      orientation = VERTICAL
-      direction   = RTL
-    }
-
-    image {
-      function    = SLIDER
-      state       = ACTIVE
-      detail      = "slider"
-      file        = "assets/scrollbar-vert-rtl-slider-active.png"
-      border      = {8, 9, 8, 8}
-      stretch     = TRUE
-      orientation = VERTICAL
-      direction   = RTL
-    }
-
-    image {
-      function    = SLIDER
-      state       = INSENSITIVE
-      detail      = "slider"
-      file        = "assets/scrollbar-vert-rtl-slider-disabled.png"
-      border      = {8, 9, 8, 8}
-      stretch     = TRUE
-      orientation = VERTICAL
-      direction   = RTL
-    }
-
-    ##########
-    # Scales #
-    ##########
-
-    # Troughs, overrided later on. We set them here too because some widgets
-    # don't specify their orientation.
-
-    image {
-      function    = BOX
-      detail      = "trough-upper"
-      file        = "assets/scale-horz-trough.png"
-      border      = {6, 6, 0, 0}
-      stretch     = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function    = BOX
-      state       = INSENSITIVE
-      detail      = "trough-upper"
-      file        = "assets/scale-horz-trough-disabled.png"
-      border      = {6, 6, 0, 0}
-      stretch     = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function    = BOX
-      detail      = "trough-lower"
-      file        = "assets/scale-horz-trough-active.png"
-      border      = {6, 6, 0, 0}
-      stretch     = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function    = BOX
-      state       = INSENSITIVE
-      detail      = "trough-lower"
-      file        = "assets/scale-horz-trough-disabled.png"
-      border      = {6, 6, 0, 0}
-      stretch     = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function    = BOX
-      detail      = "trough-upper"
-      file        = "assets/scale-vert-trough.png"
-      border      = {0, 0, 6, 6}
-      stretch     = TRUE
-      orientation = VERTICAL
-    }
-
-    image {
-      function    = BOX
-      state       = INSENSITIVE
-      detail      = "trough-upper"
-      file        = "assets/scale-vert-trough-disabled.png"
-      border      = {0, 0, 6, 6}
-      stretch     = TRUE
-      orientation = VERTICAL
-    }
-
-    image {
-      function    = BOX
-      detail      = "trough-lower"
-      file        = "assets/scale-vert-trough-active.png"
-      border      = {0, 0, 6, 6}
-      stretch     = TRUE
-      orientation = VERTICAL
-    }
-
-    image {
-      function    = BOX
-      state       = INSENSITIVE
-      detail      = "trough-lower"
-      file        = "assets/scale-vert-trough-disabled.png"
-      border      = {0, 0, 6, 6}
-      stretch     = TRUE
-      orientation = VERTICAL
-    }
-
-    # Sliders
-
-    image {
-      function = SLIDER
-      state    = NORMAL
-      detail   = "hscale"
-      file     = "assets/scale-slider.png"
-    }
-
-    image {
-      function = SLIDER
-      state    = PRELIGHT
-      detail   = "hscale"
-      file     = "assets/scale-slider-hover.png"
-    }
-
-    image {
-      function = SLIDER
-      state    = ACTIVE
-      detail   = "hscale"
-      file     = "assets/scale-slider-active.png"
-    }
-
-    image {
-      function = SLIDER
-      state    = INSENSITIVE
-      detail   = "hscale"
-      file     = "assets/scale-slider-disabled.png"
-    }
-
-    image {
-      function = SLIDER
-      state    = NORMAL
-      detail   = "vscale"
-      file     = "assets/scale-slider.png"
-    }
-
-    image {
-      function = SLIDER
-      state    = PRELIGHT
-      detail   = "vscale"
-      file     = "assets/scale-slider-hover.png"
-    }
-
-    image {
-      function = SLIDER
-      state    = ACTIVE
-      detail   = "vscale"
-      file     = "assets/scale-slider-active.png"
-    }
-
-    image {
-      function = SLIDER
-      state    = INSENSITIVE
-      detail   = "vscale"
-      file     = "assets/scale-slider-disabled.png"
-    }
+#   image {
+#     function    = SLIDER
+#     state       = NORMAL
+#     detail      = "slider"
+#     file        = "assets/scrollbar-horz-slider.png"
+#     border      = {8, 8, 9, 8 }
+#     stretch     = TRUE
+#     orientation = HORIZONTAL
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = PRELIGHT
+#     detail      = "slider"
+#     file        = "assets/scrollbar-horz-slider-hover.png"
+#     border      = {8, 8, 9, 8 }
+#     stretch     = TRUE
+#     orientation = HORIZONTAL
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = ACTIVE
+#     detail      = "slider"
+#     file        = "assets/scrollbar-horz-slider-active.png"
+#     border      = {8, 8, 9, 8 }
+#     stretch     = TRUE
+#     orientation = HORIZONTAL
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = INSENSITIVE
+#     detail      = "slider"
+#     file        = "assets/scrollbar-horz-slider-disabled.png"
+#     border      = {8, 8, 9, 8 }
+#     stretch     = TRUE
+#     orientation = HORIZONTAL
+#   }
+#
+#   # Vertical sliders
+#
+#   image {
+#     function    = SLIDER
+#     state       = NORMAL
+#     detail      = "slider"
+#     file        = "assets/scrollbar-vert-ltr-slider.png"
+#     border      = {9, 8, 8, 8}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#     direction   = LTR
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = PRELIGHT
+#     detail      = "slider"
+#     file        = "assets/scrollbar-vert-ltr-slider-hover.png"
+#     border      = {9, 8, 8, 8}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#     direction   = LTR
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = ACTIVE
+#     detail      = "slider"
+#     file        = "assets/scrollbar-vert-ltr-slider-active.png"
+#     border      = {9, 8, 8, 8}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#     direction   = LTR
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = INSENSITIVE
+#     detail      = "slider"
+#     file        = "assets/scrollbar-vert-ltr-slider-disabled.png"
+#     border      = {9, 8, 8, 8}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#     direction   = LTR
+#   }
+#
+#   # RTL
+#
+#   image {
+#     function    = SLIDER
+#     state       = NORMAL
+#     detail      = "slider"
+#     file        = "assets/scrollbar-vert-rtl-slider.png"
+#     border      = {8, 9, 8, 8}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#     direction   = RTL
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = PRELIGHT
+#     detail      = "slider"
+#     file        = "assets/scrollbar-vert-rtl-slider-hover.png"
+#     border      = {8, 9, 8, 8}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#     direction   = RTL
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = ACTIVE
+#     detail      = "slider"
+#     file        = "assets/scrollbar-vert-rtl-slider-active.png"
+#     border      = {8, 9, 8, 8}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#     direction   = RTL
+#   }
+#
+#   image {
+#     function    = SLIDER
+#     state       = INSENSITIVE
+#     detail      = "slider"
+#     file        = "assets/scrollbar-vert-rtl-slider-disabled.png"
+#     border      = {8, 9, 8, 8}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#     direction   = RTL
+#   }
+#
+#   ##########
+#   # Scales #
+#   ##########
+#
+#   # Troughs, overrided later on. We set them here too because some widgets
+#   # don't specify their orientation.
+#
+#   image {
+#     function    = BOX
+#     detail      = "trough-upper"
+#     file        = "assets/scale-horz-trough.png"
+#     border      = {6, 6, 0, 0}
+#     stretch     = TRUE
+#     orientation = HORIZONTAL
+#   }
+#
+#   image {
+#     function    = BOX
+#     state       = INSENSITIVE
+#     detail      = "trough-upper"
+#     file        = "assets/scale-horz-trough-disabled.png"
+#     border      = {6, 6, 0, 0}
+#     stretch     = TRUE
+#     orientation = HORIZONTAL
+#   }
+#
+#   image {
+#     function    = BOX
+#     detail      = "trough-lower"
+#     file        = "assets/scale-horz-trough-active.png"
+#     border      = {6, 6, 0, 0}
+#     stretch     = TRUE
+#     orientation = HORIZONTAL
+#   }
+#
+#   image {
+#     function    = BOX
+#     state       = INSENSITIVE
+#     detail      = "trough-lower"
+#     file        = "assets/scale-horz-trough-disabled.png"
+#     border      = {6, 6, 0, 0}
+#     stretch     = TRUE
+#     orientation = HORIZONTAL
+#   }
+#
+#   image {
+#     function    = BOX
+#     detail      = "trough-upper"
+#     file        = "assets/scale-vert-trough.png"
+#     border      = {0, 0, 6, 6}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#   }
+#
+#   image {
+#     function    = BOX
+#     state       = INSENSITIVE
+#     detail      = "trough-upper"
+#     file        = "assets/scale-vert-trough-disabled.png"
+#     border      = {0, 0, 6, 6}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#   }
+#
+#   image {
+#     function    = BOX
+#     detail      = "trough-lower"
+#     file        = "assets/scale-vert-trough-active.png"
+#     border      = {0, 0, 6, 6}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#   }
+#
+#   image {
+#     function    = BOX
+#     state       = INSENSITIVE
+#     detail      = "trough-lower"
+#     file        = "assets/scale-vert-trough-disabled.png"
+#     border      = {0, 0, 6, 6}
+#     stretch     = TRUE
+#     orientation = VERTICAL
+#   }
+#
+#   # Sliders
+#
+#   image {
+#     function = SLIDER
+#     state    = NORMAL
+#     detail   = "hscale"
+#     file     = "assets/scale-slider.png"
+#   }
+#
+#   image {
+#     function = SLIDER
+#     state    = PRELIGHT
+#     detail   = "hscale"
+#     file     = "assets/scale-slider-hover.png"
+#   }
+#
+#   image {
+#     function = SLIDER
+#     state    = ACTIVE
+#     detail   = "hscale"
+#     file     = "assets/scale-slider-active.png"
+#   }
+#
+#   image {
+#     function = SLIDER
+#     state    = INSENSITIVE
+#     detail   = "hscale"
+#     file     = "assets/scale-slider-disabled.png"
+#   }
+#
+#   image {
+#     function = SLIDER
+#     state    = NORMAL
+#     detail   = "vscale"
+#     file     = "assets/scale-slider.png"
+#   }
+#
+#   image {
+#     function = SLIDER
+#     state    = PRELIGHT
+#     detail   = "vscale"
+#     file     = "assets/scale-slider-hover.png"
+#   }
+#
+#   image {
+#     function = SLIDER
+#     state    = ACTIVE
+#     detail   = "vscale"
+#     file     = "assets/scale-slider-active.png"
+#   }
+#
+#   image {
+#     function = SLIDER
+#     state    = INSENSITIVE
+#     detail   = "vscale"
+#     file     = "assets/scale-slider-disabled.png"
+#   }
 
     ###########
     # Menubar #
