@@ -11,3 +11,4 @@ starship.toml = /home/v/.config/starship.toml
 fonts = /home/v/.local/share/fonts
 themes = /home/v/.local/share/themes
 .bashrc = /home/v/.bashrc
+Wallpapers/ = /home/v/Pictures/Wallpapers/

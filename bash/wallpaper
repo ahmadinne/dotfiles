@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set some variables
-wall_dir="${HOME}/Pictures/Wallpaper"
+wall_dir="${HOME}/Pictures/Wallpapers"
 cacheDir="${HOME}/.cache/jp/"
 rofi_command="rofi -x11 -dmenu -theme ${HOME}/.config/rofi/wallpaper.rasi -theme-str ${rofi_override}"
 
