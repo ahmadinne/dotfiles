@@ -17,7 +17,7 @@ function image() {
 			# cp -rf $cache $thumbnail
 			magick $cache -matte $mask -compose DstIn -composite $thumbnail
 		fi
-		if [ ! -f "$cache" ]; then
+		if [ ! -e "$cache" ]; then
 			cp -rf $defaultone $fullthumb
 			cp -rf $defaultone $thumbnail
 		fi
