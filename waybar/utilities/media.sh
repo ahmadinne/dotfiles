@@ -29,6 +29,13 @@ function artist() {
 	while true; do
 		check=$(playerctl status)
 		names=$(playerctl metadata | grep artist | grep -oP 'artist\s+\K.*')
+		hitung=$(echo "$names" | wc -m)
+
+		if [[ "$hitung" -gt 20 ]]; then
+			names=$(echo $names | awk '{print $1 " " $2}')
+		fi
+
+
 		if [[ "$check" == "Playing" || "Paused" ]]; then
 			echo "${names}"
 		else

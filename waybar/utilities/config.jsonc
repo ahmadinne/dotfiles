@@ -208,6 +208,7 @@
 
 	"custom/artist": {
 		"format": "{}",
+		"max-length": 1,
 		"tooltip": false,
 		"exec": "$HOME/.config/waybar/utilities/media.sh artist"
 	},
