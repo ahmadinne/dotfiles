@@ -112,8 +112,7 @@
 		// ]
 	},
 	"bluetooth": {
-		"format": "    ",
-		// "format-icons": [ "    " ]
+		"format": "    "
 	},
 	"custom/screenshot": {
 		"format": "    ",
