@@ -1,7 +1,7 @@
 CFLAGS+=
 LDADD+=
 LDFLAGS=
-EXEC=scroll-title thumbnail thumbnail-opt wmname artist
+EXEC=scroll-title thumbnail thumbnail-opt wmname artist player-status
 
 PREFIX?= /usr
 BINDIR?= ${PREFIX}/bin
@@ -24,6 +24,9 @@ thumbnail-opt: thumbnail-opt.c
 
 wmname: wmname.c
 	$(CC) -Os -o $@ $+ -lX11
+
+player-status: player-status.c
+	$(CC) -Os -o $@ $+ 
 
 clean:
 	rm -f $(EXEC)

@@ -215,7 +215,7 @@
         "format": "    ",
         "tooltip": false,
 		"return-type": "json",
-		"exec": "$HOME/.config/waybar/utilities/media.sh button",
+		"exec": "$HOME/.config/waybar/utilities/scripts/player-status",
 		"on-click": "playerctl play-pause"
     },
     "custom/next": {
