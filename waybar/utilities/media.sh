@@ -25,51 +25,11 @@ function image() {
 	done
 }
 
-function metadata(){
-    while true; do
-        status=$(playerctl status)
-        if [[ "$status" == Playing ]] || [[ "$status" == Paused ]]; then
-            artist=$(playerctl metadata | grep artist | grep -oP 'artist\s+\K.*')
-            title=$(playerctl metadata | grep title | grep -oP 'title\s+\K.*')
-            text="You're Listening to..."
-
-            case $1 in
-                title)
-                    echo "{\"text\": \"${title}\", \"class\": \"normal\"}" | jq --unbuffered --compact-output .
-                    ;;
-                artist)
-                    echo "{\"text\": \"${artist}\", \"class\": \"normal\"}" | jq --unbuffered --compact-output .
-                    ;;
-                text)
-                    echo "{\"text\": \"${text}\", \"class\": \"normal\"}" | jq --unbuffered --compact-output .
-                    ;;
-            esac
-        else
-			artist="unknown"
-            title="Nothin'"
-            text="You're listening?"
-
-            case $1 in
-                title)
-                    echo "{\"text\": \"${title}\", \"class\": \"normal\"}" | jq --unbuffered --compact-output .
-                    ;;
-                artist)
-                    echo "{\"text\": \"${artist}\", \"class\": \"normal\"}" | jq --unbuffered --compact-output .
-                    ;;
-                text)
-                    echo "{\"text\": \"${text}\", \"class\": \"normal\"}" | jq --unbuffered --compact-output .
-                    ;;
-            esac
-        fi
-        sleep 1
-    done
-}
-
 function artist() {
 	while true; do
 		check=$(playerctl status)
 		names=$(playerctl metadata | grep artist | grep -oP 'artist\s+\K.*')
-		if [[ "$check" == Playing ]]; then
+		if [[ "$check" == "Playing" || "Paused" ]]; then
 			echo "${names}"
 		else
 			echo "Unknown"
