@@ -116,13 +116,14 @@
 	"custom/clipboard": {
 		"format": "    ",
 		"tooltip-format": "clipboard",
-		"on-click": "$HOME/.config/bash/clipboard"
+		"on-click": "$HOME/.config/waybar/utilities/util.sh clipboard",
+		"on-click-right": "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 	},
 	"custom/colorpicker": {
 		"format": "    ",
 		"tooltip-format": "colorpicker",
-		"on-click": "hyprpicker -a",
-		"on-click-right": "$HOME/.config/waybar/utilities/util.sh colorpicker"
+		"on-click": "$HOME/.config/waybar/utilities/util.sh colorpicker",
+		"on-click-right": "hyprpicker -a"
 	},
 	"custom/screenrecord": {
 		"format": "    ",
