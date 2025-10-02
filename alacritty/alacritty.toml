@@ -5,6 +5,8 @@ general.live_config_reload = true
 bindings = [
   { key = "Escape", chars = "~", mods = "Shift" },
   { key = "Space", action = "ToggleViMode", mode = "~Search", mods = "Control" },
+  { key = "Escape", action = "ToggleViMode", mode = "Vi"},
+  { key = "q", action = "ToggleViMode", mode = "Vi"},
   { key = "Y", action = "Copy", mode = "Vi|~Search", mods = "Shift" },
   { key = "Insert", action = "Paste", mods = "Shift" },
   { key = "H", action = "High", mode = "Vi|~Search", mods = "Shift" },
