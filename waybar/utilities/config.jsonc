@@ -151,7 +151,7 @@
 		"format": "{}",
 		"tooltip": false,
 		"justify": "center",
-		"exec": "$HOME/.config/waybar/utilities/media.sh wmname"
+		"exec": "$HOME/.config/waybar/utilities/scripts/wmname"
 	},
 
 
@@ -201,9 +201,9 @@
 
 	"custom/artist": {
 		"format": "{}",
-		"max-length": 1,
+		"return-type": "json",
 		"tooltip": false,
-		"exec": "$HOME/.config/waybar/utilities/media.sh artist"
+		"exec": "$HOME/.config/waybar/utilities/scripts/artist"
 	},
 
     "custom/prev": {

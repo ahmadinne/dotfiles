@@ -86,6 +86,10 @@ int main(void) {
     char lastUrl[BUF_SIZE] = "";
     char artUrl[BUF_SIZE];
 
+	// Copy Default when launch
+	copy_file(defaultone, fullthumb);
+	copy_file(defaultone, thumbnail);
+
     // Open playerctl follow mode (no sed)
     FILE *fp = popen("playerctl --follow metadata --format '{{mpris:artUrl}}'", "r");
     if (!fp) {
@@ -132,10 +136,8 @@ int main(void) {
             }
         } else {
             // Fallback to default (skip if already copied)
-            if (!same_file(defaultone, fullthumb)) {
-                copy_file(defaultone, fullthumb);
-                copy_file(defaultone, thumbnail);
-            }
+			copy_file(defaultone, fullthumb);
+			copy_file(defaultone, thumbnail);
         }
     }
 

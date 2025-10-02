@@ -8,44 +8,6 @@
 #define MAX_LEN 20
 #define BUF_SIZE 1024
 
-// Replace "weird" fullwidth symbols with normal ASCII
-// void normalize(char *s) {
-//     unsigned char *p = (unsigned char *)s;
-//     char buf[BUF_SIZE];
-//     int j = 0;
-//
-//     while (*p) {
-//         // check for UTF-8 3-byte sequences starting with E3 80 xx
-//         if (p[0] == 0xE3 && p[1] == 0x80) {
-//             switch (p[2]) {
-//                 case 0x96: // U+3016 〖
-//                     buf[j++] = '[';
-//                     p += 3;
-//                     continue;
-//                 case 0x97: // U+3017 〗
-//                     buf[j++] = ']';
-//                     p += 3;
-//                     continue;
-//                 case 0x8E: // U+300E 『
-//                 case 0x8C: // U+300C 「
-//                     buf[j++] = '[';
-//                     p += 3;
-//                     continue;
-//                 case 0x8F: // U+300F 』
-//                     buf[j++] = ']';
-//                     p += 3;
-//                     continue;
-//             }
-//         }
-//
-//         // default: copy byte as-is
-//         buf[j++] = *p++;
-//     }
-//
-//     buf[j] = '\0';
-//     strcpy(s, buf);
-// }
-
 // Non-blocking check if new data is available on a FILE*
 int data_available(FILE *fp) {
     int fd = fileno(fp);
