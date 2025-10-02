@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
+# prc=$(brightnessctl info | grep Current | awk '{print $4}' | tr -d '()%')
+
 send_notification() {
-	waybar \
-		-c ~/.config/waybar/control/brightness/config.jsonc \
-		-s ~/.config/waybar/control/brightness/style.css & disown \
-		&& sleep 0.5 \
-		&& kill $!
+	# waybar \
+	# 	-c ~/.config/waybar/control/brightness/config.jsonc \
+	# 	-s ~/.config/waybar/control/brightness/style.css & disown \
+	# 	&& sleep 0.5 \
+	# 	&& kill $!
+	cur=$(cat /sys/class/backlight/*/brightness)
+	max=$(cat /sys/class/backlight/*/max_brightness)
+	prc=$(( 100 * cur / max ))
+	echo $prc > $XDG_RUNTIME_DIR/wob.sock
 }
 
 case $1 in

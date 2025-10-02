@@ -17,7 +17,6 @@ case $1 in
 		;;
 esac
 
-VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc '0-9' | sed 's/^0\{1,2\}//')
 
 
 send_notification() {
@@ -26,6 +25,7 @@ send_notification() {
 	# 	-s ~/.config/waybar/control/volume/style.css & disown \
 	# 	&& sleep 0.5 \
 	# 	&& kill $!
+	VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc '0-9' | sed 's/^0\{1,2\}//')
 	echo $VOLUME > $XDG_RUNTIME_DIR/wob.sock
 }
 mute_notification(){
