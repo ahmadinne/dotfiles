@@ -1,25 +1,32 @@
 #!/bin/bash
-function image() {
-	while true; do
-		artUrl=$(playerctl metadata | grep artUrl | awk '{print $3}' | sed 's|file://||')
-		cache="/tmp/mediacache"
-		thumbnail="/tmp/mediathumbnail"
-		fullthumb="/tmp/fullthumbnail"
-		defaultone="$HOME/.config/waybar/utilities/thumbnail.png"
-		mask="$HOME/.config/waybar/utilities/mask.png"
 
-		# DIFFERENCE=$(magick compare -metric RMSE "$thumbnail" "$cache" null: 2>&1 | awk '{print $1}')
-		# if (( $(echo "$DIFFERENCE > 0.0" | bc -l) )); then
-		# if [[ "$thumbnail" != "$cache" ]]; then
-		if [[ "$(md5sum "$artUrl" | awk '{print $1}')" != "$(md5sum "$fullthumb" | awk '{print $1}')" ]]; then
-			cp -rf $artUrl $fullthumb
-			magick $artUrl -thumbnail 720x720^ -gravity center -extent 720x720 $cache
-			# cp -rf $cache $thumbnail
-			magick $cache -matte $mask -compose DstIn -composite $thumbnail
-		fi
-		if [ ! -e "$cache" ]; then
-			cp -rf $defaultone $fullthumb
-			cp -rf $defaultone $thumbnail
+# Old shit don't used anymore
+# create square thumbnail
+# magick "$artUrl" -thumbnail 720x720^ -gravity center -extent 720x720 "$cache"
+
+# apply mask
+# magick "$cache" -matte "$mask" -compose DstIn -composite "$thumbnail"
+
+function image() {
+	thumbnail="/tmp/mediathumbnail"
+	fullthumb="/tmp/fullthumbnail"
+	defaultone="$HOME/.config/waybar/utilities/thumbnail.png"
+	mask="$HOME/.config/waybar/utilities/mask.png"
+	lastUrl=""
+
+	while true; do
+		artUrl=$(playerctl metadata --format "{{mpris:artUrl}}" | sed 's|file://||')
+
+		if [[ "$artUrl" != "$lastUrl" ]]; then
+			lastUrl="$artUrl"
+
+			if [ -n "$artUrl" ] && [ -e "$artUrl" ]; then
+				cp -f "$artUrl" "$fullthumb"
+				magick "$artUrl" -thumbnail 720x720 -gravity center -extent 720x720 -matte "$mask" -compose DstIn -composite "$thumbnail"
+			else
+				cp -f "$defaultone" "$fullthumb"
+				cp -f "$defaultone" "$thumbnail"
+			fi
 		fi
 		sleep 1
 	done
@@ -36,7 +43,9 @@ function artist() {
 		fi
 
 
-		if [[ "$check" == "Playing" || "Paused" ]]; then
+		if [[ "$check" == "Playing" ]]; then
+			echo "${names}"
+		elif [[ "$check" == "Paused" ]]; then
 			echo "${names}"
 		else
 			echo "Unknown"

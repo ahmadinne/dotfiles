@@ -8,7 +8,7 @@
   "fixed-center":       true,
   "exclusive":			true,
 
-  "modules-left":       [ "custom/empty", "group/top", "hyprland/window"],
+  "modules-left":       [ "group/top", "hyprland/window"],
   "modules-center":     [ "group/center" ],
   "modules-right":      [ "group/right" ],
 

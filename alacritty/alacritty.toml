@@ -47,7 +47,7 @@ x = 10
 y = 10
 
 [font]
-size = 11
+size = 12
 
 [font.bold]
 style = "bold"
@@ -56,7 +56,7 @@ style = "bold"
 style = "italic"
 
 [font.normal]
-family = "Iosevka Term Medium"
+family = "Sarasa Term CL"
 
 [font.offset]
 y = 0

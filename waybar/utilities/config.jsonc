@@ -12,17 +12,10 @@
 
     "modules-left": [],
     "modules-center": [
-		// "custom/empty",
 		"group/left",
 		"group/music"
 	],
     "modules-right": [],
-
-    "custom/empty": {
-        "format": "{}",
-        "tooltip": false,
-        "exec": "$HOME/.config/waybar/utilities/media.sh image"
-    },
 
 	"group/left": {
 		"orientation": "vertical",
@@ -201,7 +194,7 @@
 	"custom/title": {
 		"format": "{}",
 		"return-type": "json",
-		"exec": "$HOME/.config/waybar/utilities/title.sh",
+		"exec": "$HOME/.config/waybar/utilities/scripts/scroll-title",
 		"tooltip": false,
 		"justify": "center"
 	},

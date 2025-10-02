@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 while true; do
-	teks=$(playerctl metadata | grep title | grep -oP 'title\s+\K.*')
-	if [ ! "$teks" ]; then
+	teks=$(playerctl metadata --format "{{title}}")
+	if [ -z "$teks" ]; then
 		teks="Nothing played rn."
 	fi
-	hitung=$(echo "$teks" | wc -m)
-	max_len=20
+	# hitung=$(echo "$teks" | wc -m)
+	hitung=${#teks}
+	max_len=15
 
 	if [ "$hitung" -gt "$max_len" ]; then
 		teks_gabung="${teks} ${teks}"
@@ -16,8 +17,33 @@ while true; do
 				sleep 1
 			done
 		else
-			echo "{\"text\": \"$(echo "$teks")\", \"class\": \"\"}" | jq --unbuffered --compact-output .
+			echo "{\"text\": \"$(echo "$teks")\"}"
 			sleep 2
 	fi
 done
+
+#
+#
+#     if [ "$teks" != "$last_teks" ]; then
+#         hitung=${#teks}
+#
+#         if [ "$hitung" -gt "$max_len" ]; then
+#             teks_gabung="$teks $teks"
+#             i=0
+#             while [ "$teks" = "$(playerctl metadata --format "{{title}}")" ]; do
+#                 potong=$(printf "%-${max_len}.${max_len}s" "${teks_gabung:i}")
+#                 echo "{\"text\": \"$potong\", \"class\": \"\"}" | jq --unbuffered --compact-output .
+#                 sleep 0.5
+#                 ((i++))
+#                 (( i >= hitung )) && i=0  # loop smoothly
+#             done
+#         else
+#             while [ "$teks" = "$(playerctl metadata --format "{{title}}")" ]; do
+#                 echo "{\"text\": \"$teks\", \"class\": \"\"}" | jq --unbuffered --compact-output .
+#                 sleep 2
+#             done
+#         fi
+#         last_teks="$teks"
+#     fi
+# done
 
