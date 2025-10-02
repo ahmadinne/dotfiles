@@ -129,8 +129,8 @@
 	"custom/colorpicker": {
 		"format": "    ",
 		"tooltip-format": "colorpicker",
-		"on-click": "$HOME/.config/bash/colorpicker pick",
-		"on-click-right": "$HOME/.config/bash/colorpicker pick2"
+		"on-click": "hyprpicker -a",
+		"on-click-right": "$HOME/.config/waybar/utilities/util.sh colorpicker"
 	},
 	"custom/screenrecord": {
 		"format": "    ",
