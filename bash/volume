@@ -21,18 +21,20 @@ VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc '0-9' | sed 's/^0\{1,2\}
 
 
 send_notification() {
-	waybar \
-		-c ~/.config/waybar/control/volume/config.jsonc \
-		-s ~/.config/waybar/control/volume/style.css & disown \
-		&& sleep 0.5 \
-		&& kill $!
+	# waybar \
+	# 	-c ~/.config/waybar/control/volume/config.jsonc \
+	# 	-s ~/.config/waybar/control/volume/style.css & disown \
+	# 	&& sleep 0.5 \
+	# 	&& kill $!
+	echo $VOLUME > $XDG_RUNTIME_DIR/wob.sock
 }
 mute_notification(){
-	waybar \
-		-c ~/.config/waybar/control/volume/config.jsonc \
-		-s ~/.config/waybar/control/volume/style.css & disown \
-		&& sleep 0.5 \
-		&& kill $!
+	# waybar \
+	# 	-c ~/.config/waybar/control/volume/config.jsonc \
+	# 	-s ~/.config/waybar/control/volume/style.css & disown \
+	# 	&& sleep 0.5 \
+	# 	&& kill $!
+	echo 0 > $XDG_RUNTIME_DIR/wob.sock
 }
 
 case $1 in
