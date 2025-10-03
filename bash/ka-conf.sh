@@ -4,7 +4,7 @@ ID="0x${id}"
 
 one="YES"
 two="NO"
-choice=$(printf "$one\n$two" | rofi -dmenu -i -config $HOME/.config/rofi/ka-conf.rasi)
+choice=$(printf "$two\n$one" | rofi -dmenu -i -config $HOME/.config/rofi/ka-conf.rasi)
 
 case $choice in
 	$one) hyprctl dispatch killactive;;
