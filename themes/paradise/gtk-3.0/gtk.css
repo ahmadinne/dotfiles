@@ -56,7 +56,7 @@ window.background.chromium textview {
   background: black;
 }
 #MozillaGtkWidget menubar {
-  color: rgba(232, 227, 227, 0.31);
+  color: rgba(232, 227, 227, 0.50);
   background: #101010;
 }
 #MozillaGtkWidget text {
