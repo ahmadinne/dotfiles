@@ -29,7 +29,7 @@ window#waybar.fullscreen {}
 window#waybar.swallowing {}
 
 window#waybar #window {
-	color:				transparent;
+	opacity:			0;
 }
 
 /* window#waybar.empty #clock { */

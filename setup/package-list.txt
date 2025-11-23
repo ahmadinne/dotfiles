@@ -23,7 +23,6 @@ hyprpicker
 hyprpolkitagent
 imagemagick
 jq
-keyd
 libnotify
 man-db
 neovim
@@ -40,7 +39,6 @@ pipewire-pulse
 rofi
 rofi-calc
 starship
-tree
 ttf-liberation
 ttf-nerd-fonts-symbols
 ttf-sarasa-gothic
@@ -50,4 +48,3 @@ waybar
 wob
 xdg-desktop-portal-hyprland
 yazi
-zram-generator

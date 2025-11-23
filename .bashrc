@@ -18,6 +18,9 @@ HISTDUP=erase
 bunnyfetch
 
 
+# ---- Bindings ----
+bind '\C-H:backward-kill-word' #Makes control+backspace delete backwards
+
 
 # ---- Vim Mode ----
 # set -o vi

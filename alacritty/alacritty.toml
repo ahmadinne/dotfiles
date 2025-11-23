@@ -3,6 +3,7 @@ general.live_config_reload = true
 
 [keyboard]
 bindings = [
+  # { key = "Backspace", mods = "Control", chars = "\u0017" },
   { key = "Escape", chars = "~", mods = "Shift" },
   { key = "Space", action = "ToggleViMode", mode = "~Search", mods = "Control" },
   { key = "Escape", action = "ToggleViMode", mode = "Vi"},
