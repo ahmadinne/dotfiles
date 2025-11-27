@@ -28,7 +28,7 @@ man-db
 neovim
 noto-fonts-emoji
 nwg-look
-pcmanfm
+nemo
 rofi
 rofi-calc
 starship

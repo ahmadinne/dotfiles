@@ -450,6 +450,11 @@ iconview:selected {
   background: #8DA3B9;
   border-radius: 0.5em;
 }
+iconview.view:selected, iconview item:selected {
+	background: rgba(141, 163, 185, 0.6);
+	color: #E8E3E3;
+	border-radius: 0.5em;
+}
 
 infobar {
   color: rgba(232, 227, 227, 0.87);
