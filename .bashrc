@@ -11,10 +11,10 @@ eval "$(starship init bash)"
 
 # ---- Options ----
 [[ $- != *i* ]] && return
-HISTSIZE=1000
+HISTSIZE=10000
 SAVEHIST=$HISTSIZE
-HISTFILE=~/.history
-HISTDUP=erase
+HISTFILE=~/.cache/bash-history
+HISTCONTROL=ignoredups
 bunnyfetch
 
 
@@ -30,7 +30,7 @@ bind '\C-H:backward-kill-word' #Makes control+backspace delete backwards
 
 # ---- Alias ----
 alias cat='bat'
-alias ls='eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions -a'
+alias ls='eza --color=always --git --no-filesize --group-directories-last --icons=always --no-time --no-user --no-permissions -a'
 alias grep='grep --color=auto'
 alias v='$EDITOR'
 alias vi='$EDITOR'
