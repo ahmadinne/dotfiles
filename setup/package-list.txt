@@ -26,16 +26,9 @@ jq
 libnotify
 man-db
 neovim
-networkmanager
 noto-fonts-emoji
 nwg-look
-papirus-icon-theme
-pavucontrol
-pcmanfm-gtk3
-pipewire
-pipewire-alsa
-pipewire-jack
-pipewire-pulse
+pcmanfm
 rofi
 rofi-calc
 starship
