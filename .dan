@@ -1,5 +1,4 @@
 alacritty = /home/ahmadinne/.config/alacritty
-bash = /home/ahmadinne/.config/bash
 bin = /home/ahmadinne/.config/bin
 dunst = /home/ahmadinne/.config/dunst
 hypr = /home/ahmadinne/.config/hypr
@@ -12,3 +11,4 @@ themes = /home/ahmadinne/.local/share/themes
 .bashrc = /home/ahmadinne/.bashrc
 Wallpapers/ = /home/ahmadinne/Pictures/Wallpapers/
 wob = /home/ahmadinne/.config/wob
+scripts = /home/ahmadinne/.config/scripts

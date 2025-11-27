@@ -3,6 +3,7 @@
     "exclusive": false,
     "position": "right",
     "spacing": 0,
+		"start_hidden": true,
 
     "modules-left": [],
     "modules-center": [],
