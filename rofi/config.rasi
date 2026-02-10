@@ -18,7 +18,7 @@ configuration {
     steal-focus:                false;
 		me-select-entry:						"";
 		me-accept-entry:						"!MousePrimary"; 
-		kb-cancel:									"MousePrimary";
+		kb-cancel:									"MousePrimary,Escape";
 		hover-select:								true;
 }
 
