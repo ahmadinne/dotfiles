@@ -16,7 +16,8 @@
 	 steal-focus:               true;
 	 hover-select:							true;
 	 me-select-entry:						"";
-	 me-accept-entry:						"MousePrimary";
+	 me-accept-entry:						"!MousePrimary"; 
+	 kb-cancel:									"MousePrimary";
  }
 
 /*****----- Global Properties -----*****/

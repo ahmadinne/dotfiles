@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set some variables
-wall_dir="${HOME}/Pictures/Wallpapers"
+wall_dir="${HOME}/Pictures/Wallpaper"
 cacheDir="${HOME}/.cache/jp/"
 rofi_command="rofi -x11 -dmenu -theme ${HOME}/.config/rofi/wallpaper.rasi -theme-str ${rofi_override}"
 
@@ -35,7 +35,16 @@ wall_selection=$(find "${wall_dir}"  -maxdepth 1  -type f \( -iname "*.jpg" -o -
 [[ -n "$wall_selection" ]] || exit 1
 # swww img ${wall_dir}/${wall_selection} --transition-type grow --transition-pos left --transition-fps 60 --transition-step 60 --transition-duration 1
 # hellwal -i ${wall_dir}/${wall_selection}
-echo -e "preload = ${wall_dir}/${wall_selection} \nwallpaper = , ${wall_dir}/${wall_selection}" > ${HOME}/.config/hypr/hyprpaper.conf
+echo -e "
+wallpaper {
+	monitor =
+	path = ${wall_dir}/${wall_selection}
+	fit_mode = cover
+}
+
+splash = false
+ipc = true
+" > ${HOME}/.config/hypr/hyprpaper.conf
 killall hyprpaper && hyprpaper
 
 exit 0

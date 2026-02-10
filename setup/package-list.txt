@@ -5,7 +5,6 @@ bat
 brightnessctl
 cliphist
 dunst
-efibootmgr
 engrampa
 eza
 firefox
@@ -32,7 +31,6 @@ nemo
 rofi
 rofi-calc
 starship
-ttf-liberation
 ttf-nerd-fonts-symbols
 ttf-sarasa-gothic
 unrar

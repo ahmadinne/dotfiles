@@ -16,6 +16,10 @@ configuration {
     global-kb:                  true;
     click-to-exit:              true;
     steal-focus:                false;
+		me-select-entry:						"";
+		me-accept-entry:						"!MousePrimary"; 
+		kb-cancel:									"MousePrimary";
+		hover-select:								true;
 }
 
 /*****----- Global Properties -----*****/

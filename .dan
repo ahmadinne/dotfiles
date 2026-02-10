@@ -9,6 +9,6 @@ starship.toml = /home/ahmadinne/.config/starship.toml
 fonts = /home/ahmadinne/.local/share/fonts
 themes = /home/ahmadinne/.local/share/themes
 .bashrc = /home/ahmadinne/.bashrc
-Wallpapers/ = /home/ahmadinne/Pictures/Wallpapers/
+Wallpaper/ = /home/ahmadinne/Pictures/Wallpaper/
 wob = /home/ahmadinne/.config/wob
 scripts = /home/ahmadinne/.config/scripts
