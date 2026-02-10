@@ -6,7 +6,11 @@
 
 int main() {
     char status[BUF_SIZE];
-    char prev_status[BUF_SIZE] = "";
+    char prev_status[BUF_SIZE] = "Paused";
+
+    // Emit default state when nothing is playing
+    printf("{\"class\": \"stopped\"}\n");
+    fflush(stdout);
 
     FILE *fp = popen("playerctl status --follow 2>/dev/null", "r");
     if (!fp) {
@@ -27,9 +31,14 @@ int main() {
                 printf("{\"class\": \"paused\"}\n");
             }
             fflush(stdout);
-            strncpy(prev_status, status, sizeof(prev_status));
+            strncpy(prev_status, status, sizeof(prev_status) - 1);
+            prev_status[sizeof(prev_status) - 1] = '\0';
         }
     }
+
+		// If playerctl exits, assume paused
+		printf("{\"class\": \"stopped\"}\n");
+		fflush(stdout);
 
     pclose(fp);
     return 0;

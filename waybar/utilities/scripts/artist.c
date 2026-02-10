@@ -1,21 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <sys/select.h>
-#include <fcntl.h>
 
 #define BUF_SIZE 1024
-
-// Non-blocking check if new data is available on a FILE*
-int data_available(FILE *fp) {
-    int fd = fileno(fp);
-    fd_set fds;
-    struct timeval tv = {0, 0};
-    FD_ZERO(&fds);
-    FD_SET(fd, &fds);
-    return select(fd + 1, &fds, NULL, NULL, &tv) > 0;
-}
 
 // Abbreviate artist name: first two words full, remaining initials
 void abbreviate_artist(const char *input, char *output, size_t out_size) {
@@ -56,6 +43,11 @@ int main() {
     char artist_raw[BUF_SIZE];
     char artist_prev[BUF_SIZE] = "";
 
+    printf("{\"text\": \"Unknown\"}\n");
+    fflush(stdout);
+    strncpy(artist_prev, "Unknown", sizeof(artist_prev) - 1);
+    artist_prev[sizeof(artist_prev) - 1] = '\0';
+
     // Follow playerctl artist metadata
     FILE *fp = popen("playerctl metadata artist --follow 2>/dev/null", "r");
     if (!fp) {
@@ -80,12 +72,11 @@ int main() {
             strncpy(artist_prev, artist_abbr, sizeof(artist_prev) - 1);
             artist_prev[sizeof(artist_prev) - 1] = '\0';
         }
-
-        // Non-blocking wait for new data
-        while (!data_available(fp)) {
-            usleep(500000); // 0.1s sleep to prevent busy loop
-        }
     }
+
+		// playerctl exited → reset artist
+		printf("{\"text\": \"Unknown\"}\n");
+		fflush(stdout);
 
     pclose(fp);
     return 0;

@@ -1,22 +1,33 @@
 {
 	"layer": "top",
-	"position": "bottom",
+	"position": "top",
 	"exclusive": false,
-	"margin-bottom": 5,
 	"spacing": 0,
 	"start_hidden": true,
-	// "height": 50,
-	"width": 300,
-	"expand-center": true,
-	// "expand-left": true,
-	// "expand-right": true,
+	"fixed-center": true,
 
-	"modules-left": [],
+	"modules-left": [ "custom/empty" ],
 	"modules-center": [
-		"group/left",
-		"group/music"
+		"group/all"
 	],
-	"modules-right": [],
+	"modules-right": [ "custom/empty" ],
+
+	"group/all": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/emptop",
+			"group/both",
+			"custom/empbot"
+		]
+	},
+
+	"group/both": {
+		"orientation": "horizontal",
+		"modules": [
+			"group/left",
+			"group/right"
+		]
+	},
 
 	"group/left": {
 		"orientation": "vertical",
@@ -25,6 +36,37 @@
 			"group/slider",
 			"group/boxes"
 		]
+	},
+
+	"group/right": {
+		"orientation": "vertical",
+		"modules": [
+			"group/music"
+		]
+	},
+
+	"custom/empty": {
+		"format": "EMPTY",
+		"tooltip": false,
+		"cursor": false,
+		"on-click": "~/.config/scripts/escape/escape",
+		"on-click-right": "~/.config/scripts/escape/escape"
+	},
+
+	"custom/emptop": {
+		"format": "EMPTOP",
+		"tooltip": false,
+		"cursor": false,
+		"on-click": "~/.config/scripts/escape/escape",
+		"on-click-right": "~/.config/scripts/escape/escape"
+	},
+
+	"custom/empbot": {
+		"format": "EMPBOT",
+		"tooltip": false,
+		"cursor": false,
+		"on-click": "~/.config/scripts/escape/escape",
+		"on-click-right": "~/.config/scripts/escape/escape"
 	},
 
 	"group/slider": {
@@ -178,7 +220,6 @@
 		"modules": [
 			"custom/title",
 			"custom/artist",
-			"custom/progress",
 			"group/button"
 		]
 	},

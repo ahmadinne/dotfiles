@@ -43,8 +43,8 @@ window#waybar > box {
 
 #custom-cpu,
 #custom-temperature,
-#memory.logo,
-#disk.logo {
+#custom-memory,
+#custom-disk {
 	background-color: @empat;
 	padding: 20px;
 	border-radius: 3 3 0 0px;
@@ -58,6 +58,7 @@ window#waybar > box {
 	font-weight: bold;
 	padding: 2 0px;
 	border-radius: 0 0 3 3px;
+	transition: .1s ease-in-out;
 }
 
 #custom-cpu { 
@@ -66,44 +67,64 @@ window#waybar > box {
 #custom-temperature { 
 	background-image: url('../svg/temperature.svg');
 }
-#memory.logo {
+#custom-memory {
 	background-image: url('../svg/memory.svg');
 }
-#disk.logo {
+#custom-disk {
 	background-image: url('../svg/hard-drives.svg');
 }
 
 #custom-cpu.default,
+#custom-disk.default,
+#custom-memory.default,
 #custom-temperature.default { background-color: @blue; }
 
 #custom-cpu.mid,
+#custom-disk.mid,
+#custom-memory.mid,
 #custom-temperature.mid { background-color: @green; }
 
 #custom-cpu.warning,
+#custom-disk.warning,
+#custom-memory.warning,
 #custom-temperature.warning { background-color: @yellow; }
 
 #custom-cpu.critical,
+#custom-disk.critical,
+#custom-memory.critical,
 #custom-temperature.critical { background-color: @red; }
 
 
 
 #bottom {
 	background-color: @module-bg;
+	transition: .1s ease-in-out;
 	border-radius: 4px;
-	padding: 10px;
+	padding: 5px;
 	margin: 5px;
+	color: @gray;
 }
+#bottom:hover {
+	color: @foreground;
+}
+
 #custom-pptext {
-	margin-top: 10px;
+	margin-top: 5px;
 	font-weight: bold;
 }
+
+#powerprofiles {
+	color: @foreground;
+	margin-top: 5px;
+}
+
 #power-profiles-daemon.powersaver,
 #power-profiles-daemon.balanced,
 #power-profiles-daemon.performance {
 	background-color: @tiga;
 	border-radius: 4px;
-	padding: 12px;
+	padding: 12px 14px;
 }
 #power-profiles-daemon.balanced {
-	margin: 0 10px;
+	margin: 0 5px;
 }

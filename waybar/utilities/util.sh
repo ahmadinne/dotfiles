@@ -2,12 +2,12 @@
 barid=$(ps -ef | grep '[w]aybar -c' | grep utilities | awk '{print $2}' )
 
 function colorpicker {
-	kill $barid
+	kill -SIGUSR1 $barid
 	hyprpicker -a
 }
 
 function clipboard {
-	kill $barid
+	kill -SIGUSR1 $barid
 	cliphist list | rofi -dmenu | cliphist decode | wl-copy
 }
 

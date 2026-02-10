@@ -11,18 +11,18 @@ window#waybar {
   background-color:     transparent;
   color:                @foreground;
 }
+
 window#waybar > box {
 	background:			@background;
-	/* margin:				0px 5px 5px 5px; */
 }
 
-window#waybar.empty,
-window#waybar.floating,
-window#waybar.floating >box,
-window#waybar.empty > box {
-	background:			transparent;
-	margin:				0px 5px 5px 5px;
-}
+/* window#waybar.empty, */
+/* window#waybar.floating, */
+/* window#waybar.floating > box, */
+/* window#waybar.empty > box { */
+/* 	background:			transparent; */
+/* 	margin:				0px 5px 5px 5px; */
+/* } */
 
 window#waybar.solo {}
 window#waybar.fullscreen {}

@@ -1,19 +1,37 @@
-* {
-  font-size: 11px;
-}
-
 @import "../colors.css";
 
 window#waybar {
   background-color: transparent;
   color: @foreground;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+	transition-property: background-color;
+	transition-duration: .5s;
 }
 window#waybar > box {
-  background-color: @background;
-  border-radius: 6;
-  padding: 5;
+  background-color: transparent;
+}
+
+#custom-empty {
+	color: transparent;
+	background: transparent;
+	padding: 69.7rem 31rem 0rem 20rem;
+}
+
+#custom-emptop {
+	color: transparent;
+	background: transparent;
+	padding-top: 51rem;
+}
+
+#custom-empbot {
+	color: transparent;
+	background: transparent;
+	padding-top: 2rem;
+}
+
+#both {
+	background-color: @background;
+	padding: 0.3rem;
+	border-radius: 6;
 }
 
 #left {
@@ -39,17 +57,6 @@ window#waybar > box {
 }
 #boxtengah {
 	margin: 11 0 1 0;
-}
-
-#custom-pfp {
-	font-size: 24px;
-	background-image: url('../svg/pfp.svg');
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 24px;
-}
-#custom-pfp:hover {
-	background-color: alpha(@foreground, 0.1);
 }
 
 #network,
@@ -151,12 +158,17 @@ window#waybar > box {
 	min-width: 113px;
 	border-radius: 4px;
 	background-color: alpha(@foreground, 0.05);
+	transition: .2s ease-in-out;
 }
 #pulseaudio-slider highlight,
 #backlight-slider highlight {
 	min-width: 0px;
 	border-radius: 4px;
 	background-color: @foreground;
+}
+#pulseaudio-slider trough:hover,
+#backlight-slider trough:hover {
+	background-color: @gray;
 }
 
 #music {
@@ -192,13 +204,16 @@ window#waybar > box {
 
 /* buttons */
 #button {
-	margin: 10 0 0 12;
+	margin: 6 0 0 0;
+	border-radius: 6;
 }
 
 #custom-prev,
 #custom-next {
   color: alpha(@foreground, 0.3);
-  transition: all 0.3s ease-in-out;
+	padding: 5 10;
+	border-radius: 5;
+  transition: all .1s ease-in-out;
 }
 #custom-prev {
 	background-image: url('../svg/skip-back.svg');
@@ -214,18 +229,26 @@ window#waybar > box {
 }
 #custom-prev:hover,
 #custom-next:hover {
-  /* background-color: @module-bg; */
+  background-color: @gray;
   color: @foreground;
 }
 
 #custom-play {
+  transition: all .1s ease-in-out;
 	color: alpha(@foreground, 0.7);
-	transition: all 0.3s ease-in-out;
-	padding: 0 20;
+	padding: 0 12;
 	background-image: url('../svg/play.svg');
 	background-position: center;
 	background-repeat: no-repeat;
+	border-radius: 5;
 	background-size: 14px;
+}
+#custom-play.stopped {
+	background-image: url('../svg/x.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 14px;
+	color: alpha(@foreground, 0.3);
 }
 #custom-play.paused {
 	background-image: url('../svg/play.svg');
@@ -240,5 +263,6 @@ window#waybar > box {
 	background-size: 14px;
 }
 #custom-play:hover {
+	background-color: @gray;
   color: @foreground;
 }

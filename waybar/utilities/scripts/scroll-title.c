@@ -22,6 +22,9 @@ int main() {
     char teks[BUF_SIZE];
     char teks_gabung[BUF_SIZE * 2];
 
+		printf("{\"text\": \"Nothing played rn.\", \"class\": \"\"}\n");
+		fflush(stdout);
+
     FILE *fp = popen("playerctl metadata --format '{{title}}' --follow", "r");
     if (!fp) {
         perror("popen");
@@ -56,7 +59,7 @@ int main() {
 
                 printf("{\"text\": \"%s\", \"class\": \"\"}\n", potong);
                 fflush(stdout);
-                usleep(500000); // scroll speed
+                usleep(700000); // 0.5s scroll speed
 
                 if (data_available(fp)) break;
                 i++;

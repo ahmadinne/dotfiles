@@ -45,9 +45,8 @@
 	},
 	"custom/cpu": {
 		"format": "    ",
-		"tooltip": false,
 		"return-type": "json",
-		"exec": "$HOME/.config/waybar/power/cpu.sh"
+		"exec": "~/.config/waybar/power/scripts/cpu"
 	},
 	"cpu#text": {
 		"interval": 1,
@@ -63,9 +62,8 @@
 	},
 	"custom/temperature": {
 		"format": "    ",
-		"tooltips": false,
 		"return-type": "json",
-		"exec": "$HOME/.config/waybar/power/temp.sh"
+		"exec": "~/.config/waybar/power/scripts/temp"
 	},
 	"temperature#text": {
 		"format": "{temperatureC}°C"
@@ -74,13 +72,14 @@
 	"group/memory": {
 		"orientation": "vertical",
 		"modules": [
-			"memory#logo",
+			"custom/memory",
 			"memory#text"
 		]
 	},
-	"memory#logo": {
+	"custom/memory": {
 		"format": "    ",
-		"tooltips": false
+		"return-type": "json",
+		"exec": "~/.config/waybar/power/scripts/ram"
 	},
 	"memory#text": {
 		"format": "{percentage}%"
@@ -89,13 +88,14 @@
 	"group/disk": {
 		"orientation": "vertical",
 		"modules": [
-			"disk#logo",
+			"custom/disk",
 			"disk#text"
 		]
 	},
-	"disk#logo": {
+	"custom/disk": {
 		"format": "    ",
-		"tooltips": false
+		"return-type": "json",
+		"exec": "~/.config/waybar/power/scripts/disk"
 	},
 	"disk#text": {
 		"format": "{percentage_used}%"

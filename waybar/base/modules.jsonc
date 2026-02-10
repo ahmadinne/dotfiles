@@ -1,0 +1,97 @@
+{
+	// Main Group Area
+	"custom/empty": {
+		"format": "{}",
+		"tooltip": false,
+		"exec": "$HOME/.config/waybar/utilities/media.sh image"
+	},
+	"group/top": {
+		"orientation":      "inherit",
+		"modules":          [ "clock", "custom/split", "group/workspaces"]
+	},
+	"group/center": {
+		"orientation":      "inherit",
+		"modules":          [ "custom/utilities", "custom/launcher" ]
+	},
+	"group/right": {
+		"orientation":      "inherit",
+		"modules":          [ "group/trayer", "custom/split", "battery" ]
+	},
+
+	// Secondary Group Area
+	"group/trayer": {
+		"orientation":      "inherit",
+		"modules":          [ "custom/tray", "tray" ],
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": false
+		}
+	},
+	"group/workspaces": {
+		"orientation":      "inherit",
+		"modules":          [ "custom/workspace", "hyprland/workspaces" ],
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": true
+		}
+	},
+
+	"custom/workspace": {
+		"format":           "{}",
+		"return-type":		"json",
+		"exec":				"$HOME/.config/waybar/base/workspaces",
+		"tooltip":          false
+	},
+
+	"hyprland/workspaces": {
+		"disable-scroll":   true,
+		"format":           "{windows}",
+		"window-rewrite-default": ".",
+		"window-rewrite": {
+			"class<google-chrome>": "",
+			"class<alacritty>": "",
+			"class<discord>": ""
+		}
+	},
+
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{capacity} %",
+		"tooltip": false,
+		"on-click": "bash $HOME/.config/waybar/power/toggle.sh"
+	},
+
+	// Custom Area
+	"custom/utilities": {
+		"format": "    ",
+		"tooltip-format": "Utilities",
+		"on-click": "bash $HOME/.config/waybar/utilities/toggle.sh"
+	},
+	"custom/launcher": {
+		"format": "    ",
+		"tooltip-format": "App Launcher",
+		"on-click": "pkill -x rofi || rofi -show drun"
+	},
+
+	// Group Right
+	"custom/tray": {  
+		"format": "    ",
+		"tooltip": false
+	},
+	"custom/split": {     "format": "┃",            "tooltip": false },
+
+	"tray": {             "icon-size": 12,          "spacing": 3 },
+	"clock": {            
+		"format":			"{:%H:%M}",
+		"tooltip":			false,
+		"on-click":			"bash $HOME/.config/waybar/calendar/toggle.sh"
+	},
+
+	"hyprland/window": {
+		"max-length": 31
+	}
+}

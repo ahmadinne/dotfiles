@@ -1,6 +1,6 @@
 * {
     font-family: Sarasa Fixed CL;
-    font-size: 16px;
+    font-size: 1rem;
 	font-weight: bold;
 }
 
@@ -89,6 +89,10 @@ window#waybar > box {
     border-radius: 6;
 }
 
-#custom-su1.last-month, #custom-mo1.last-month, #custom-tu1.last-month, #custom-we1.last-month, #custom-th1.last-month, #custom-fr1.last-month, #custom-sa1.last-month {
-    color: transparent;
+#custom-su1.other-month, #custom-mo1.other-month, #custom-tu1.other-month, #custom-we1.other-month, #custom-th1.other-month, #custom-fr1.other-month, #custom-sa1.other-month,
+#custom-su2.other-month, #custom-mo2.other-month, #custom-tu2.other-month, #custom-we2.other-month, #custom-th2.other-month, #custom-fr2.other-month, #custom-sa2.other-month,
+#custom-su3.other-month, #custom-mo3.other-month, #custom-tu3.other-month, #custom-we3.other-month, #custom-th3.other-month, #custom-fr3.other-month, #custom-sa3.other-month,
+#custom-su4.other-month, #custom-mo4.other-month, #custom-tu4.other-month, #custom-we4.other-month, #custom-th4.other-month, #custom-fr4.other-month, #custom-sa4.other-month,
+#custom-su5.other-month, #custom-mo5.other-month, #custom-tu5.other-month, #custom-we5.other-month, #custom-th5.other-month, #custom-fr5.other-month, #custom-sa5.other-month {
+	color: @gray;
 }
