@@ -1,0 +1,12 @@
+{
+	"custom/empty": {
+		"format": "EMPTY",
+		"tooltip": false,
+		"cursor": false,
+		"on-click": "~/.config/scripts/escape/escape",
+		"on-click-right": "~/.config/scripts/escape/escape",
+		"on-click-middle": "~/.config/scripts/escape/escape",
+		"on-scroll-up": "~/.config/scripts/escape/escape",
+		"on-scroll-down": "~/.config/scripts/escape/escape",
+	}
+}

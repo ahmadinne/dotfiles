@@ -7,13 +7,7 @@
 		"fixed-center": true,
 
 		"modules-center": [ "custom/empty" ],
-		"custom/empty": {
-			"format": "EMPTY",
-			"tooltip": false,
-			"cursor": false,
-			"on-click": "~/.config/scripts/escape/escape",
-			"on-click-right": "~/.config/scripts/escape/escape"
-		}
+		"include": [ "~/.config/waybar/empty.json" ]
 	},
 
 	{
