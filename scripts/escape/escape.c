@@ -16,7 +16,7 @@ int is_base_waybar(pid_t pid) {
 int main(void) {
     FILE *fp;
     char line[512];
-    int in_level_2 = 0;
+		int active_visible_layer = 0;
 
     pid_t visible_pids[32];
     int visible_count = 0;
@@ -26,16 +26,16 @@ int main(void) {
 
     while (fgets(line, sizeof(line), fp)) {
         // Enter / leave level 2
-        if (strstr(line, "\"2\"")) {
-            in_level_2 = 1;
-            continue;
-        }
-        if (in_level_2 && strstr(line, "]")) {
-            in_level_2 = 0;
-        }
+				if (strstr(line, "\"2\"") || strstr(line, "\"3\"")) {
+						active_visible_layer = 1;
+						continue;
+				}
+				if (active_visible_layer && strstr(line, "]")) {
+						active_visible_layer = 0;
+				}
 
         // Look for visible waybar entries
-        if (in_level_2 && strstr(line, "\"namespace\": \"waybar\"")) {
+        if (active_visible_layer && strstr(line, "\"namespace\": \"waybar\"")) {
             // Find pid in subsequent lines
             long pos = ftell(fp);
             while (fgets(line, sizeof(line), fp)) {

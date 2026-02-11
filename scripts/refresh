@@ -24,5 +24,8 @@ if true; then
 		waybar \
 			-c ~/.config/waybar/calendar/config.jsonc \
 			-s ~/.config/waybar/calendar/style.css & disown
+		waybar \
+			-c ~/.config/waybar/close/config.jsonc \
+			-s ~/.config/waybar/close/config.css & disown
 	fi
 fi

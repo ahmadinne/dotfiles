@@ -1,6 +1,5 @@
 * {
-	font-family: "Symbols Nerd Font", "Iosevka Medium";
-	font-size: 11px;
+	font-size: 1rem;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 16px;
@@ -15,16 +14,20 @@ window#waybar {
     transition-duration: .5s;
 }
 
-window#waybar > box {
-    background-color: transparent;
-    margin: 5px;
+#custom-empty {
+	color: transparent;
+	background: transparent;
+	padding: 50rem 70rem;
 }
 
-.modules-right {
+#both {
 	background-color: @background;
 	border-radius: 6px;
 	padding: 5px;
+	margin: 0 5px 5px 0;
 }
+
+.modules-right {}
 
 /* MIDDLE GROUPS */
 #middle {

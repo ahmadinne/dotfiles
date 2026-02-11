@@ -1,7 +1,6 @@
 * {
-    font-family: Sarasa Fixed CL;
     font-size: 1rem;
-	font-weight: bold;
+		font-weight: bold;
 }
 
 @import "../colors.css";
@@ -13,11 +12,14 @@ window#waybar {
     transition-duration: .5s;
 }
 
-window#waybar > box {
-    border-radius: 6;
-    background-color: transparent;
-    margin-left: 5;
-    margin-top: 5;
+#custom-empty {
+	color: transparent;
+	background: transparent;
+	padding: 50rem 70rem;
+}
+
+#calendar {
+	margin: 0 0 5px 5px;
 }
 
 #custom-month {

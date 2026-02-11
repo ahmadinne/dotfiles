@@ -13,29 +13,14 @@ window#waybar > box {
 #custom-empty {
 	color: transparent;
 	background: transparent;
-	padding: 69.7rem 31rem 0rem 20rem;
-}
-
-#custom-emptop {
-	color: transparent;
-	background: transparent;
-	padding-top: 51rem;
-}
-
-#custom-empbot {
-	color: transparent;
-	background: transparent;
-	padding-top: 2rem;
+	padding: 50rem 70rem;
 }
 
 #both {
 	background-color: @background;
 	padding: 0.3rem;
 	border-radius: 6;
-}
-
-#left {
-	/* margin: 5; */
+	margin-bottom: 5px;
 }
 
 #profile {

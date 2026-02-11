@@ -7,6 +7,7 @@
 
 #define MAX_LEN 20
 #define BUF_SIZE 1024
+#define FALLBACK_TEXT "Nothing played rn."
 
 // Non-blocking check if new data is available on a FILE*
 int data_available(FILE *fp) {
@@ -22,15 +23,17 @@ int main() {
     char teks[BUF_SIZE];
     char teks_gabung[BUF_SIZE * 2];
 
-		printf("{\"text\": \"Nothing played rn.\", \"class\": \"\"}\n");
-		fflush(stdout);
-
     FILE *fp = popen("playerctl metadata --format '{{title}}' --follow", "r");
     if (!fp) {
         perror("popen");
         return 1;
     }
 
+    // 1️⃣ Print fallback ONCE
+    printf("{\"text\": \"Nothing played rn.\", \"class\": \"idle\"}\n");
+    fflush(stdout);
+
+    // 2️⃣ Block until playerctl outputs something
     while (fgets(teks, sizeof(teks), fp)) {
         // strip newline
         size_t len = strlen(teks);
@@ -40,18 +43,14 @@ int main() {
         }
 
         if (len == 0) {
-            strncpy(teks, "Nothing played rn.", sizeof(teks));
+            strcpy(teks, "Nothing played rn.");
             len = strlen(teks);
         }
 
-        // normalize symbols
-        // normalize(teks);
-        len = strlen(teks);
-
         if (len > MAX_LEN) {
             snprintf(teks_gabung, sizeof(teks_gabung), "%s %s", teks, teks);
-
             int i = 0;
+
             while (1) {
                 char potong[MAX_LEN + 1];
                 strncpy(potong, teks_gabung + (i % len), MAX_LEN);
@@ -59,9 +58,12 @@ int main() {
 
                 printf("{\"text\": \"%s\", \"class\": \"\"}\n", potong);
                 fflush(stdout);
-                usleep(700000); // 0.5s scroll speed
+                usleep(700000);
 
-                if (data_available(fp)) break;
+                // break ONLY when new metadata arrives
+                if (data_available(fp))
+                    break;
+
                 i++;
             }
         } else {
@@ -70,7 +72,8 @@ int main() {
                 fflush(stdout);
                 sleep(2);
 
-                if (data_available(fp)) break;
+                if (data_available(fp))
+                    break;
             }
         }
     }
