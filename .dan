@@ -14,3 +14,5 @@ scripts = /home/ahmadinne/.config/scripts
 kitty = /home/ahmadinne/.config/kitty
 gtk-3.0/ = /home/ahmadinne/.config/gtk-3.0/
 gtk-4.0/ = /home/ahmadinne/.config/gtk-4.0/
+fontconfig/ = /home/ahmadinne/.config/fontconfig/
+icons/ = /home/ahmadinne/.local/share/icons/
