@@ -1,0 +1,68 @@
+@define-color black #101010;
+@define-color dark-gray #151515;
+@define-color gray #1B1B1B;
+@define-color white #e8e3e3;
+@define-color blue #8da3b9;
+@define-color cyan #8aa6a2;
+@define-color red #b66467;
+@define-color green #8c977d;
+@define-color yellow #d9bc8c;
+@define-color purple #a988b0;
+
+@define-color accent_bg_color @black;
+@define-color accent_fg_color @white;
+@define-color accent_color @yellow;
+
+@define-color destructive_bg_color @red; 
+@define-color destructive_fg_color @dark-gray;
+@define-color destructive_color @red;
+
+@define-color success_bg_color @green;
+@define-color success_fg_color @dark-gray;
+@define-color success_color @green;
+
+@define-color warning_bg_color @yellow;
+@define-color warning_fg_color @dark-gray;
+@define-color warning_color @yellow;
+
+@define-color error_bg_color @red;
+@define-color error_fg_color @dark-gray;
+@define-color error_color @red;
+
+@define-color window_bg_color @dark-gray;
+@define-color window_fg_color @white;
+
+@define-color view_bg_color @dark-gray;
+@define-color view_fg_color @white;
+
+@define-color headerbar_bg_color @gray;
+@define-color headerbar_fg_color @white;
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color headerbar_shade_color @gray;
+
+@define-color card_bg_color @dark-gray;
+@define-color card_fg_color @white;
+@define-color card_shade_color @dark-gray;
+
+@define-color popover_bg_color @gray;
+@define-color popover_fg_color @white;
+
+@define-color sidebar_backdrop_color @dark-gray;
+@define-color sidebar_bg_color @dark-gray;
+@define-color sidebar_fg_color @white;
+
+/* Target the specific row in the sidebar that's selected */
+.navigation-sidebar row:selected {
+  background-color: @green;
+  color: @dark-gray;
+}
+
+/* Target the label in the selected row */
+.navigation-sidebar row:selected .sidebar-label {
+  color: @dark-gray; 
+}
+
+/* Hover effect for non-selected rows */
+.navigation-sidebar row:hover:not(:selected) {
+  background-color: @gray;
+}

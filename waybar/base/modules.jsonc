@@ -39,7 +39,7 @@
 	"custom/workspace": {
 		"format":           "{}",
 		"return-type":		"json",
-		"exec":				"$HOME/.config/waybar/base/workspaces",
+		"exec":						"~/.config/waybar/base/workspace/workspaces",
 		"tooltip":          false
 	},
 
