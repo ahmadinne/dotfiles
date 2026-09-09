@@ -1,0 +1,251 @@
+[
+	{
+		"layer": "top",
+		"position": "top",
+		"exclusive": false,
+		"start_hidden": true,
+		"fixed-center": true,
+
+		"include": [ "~/.config/waybar/empty.json" ],
+		"modules-center": [ "custom/empty" ]
+	},
+
+	{
+		"layer": "top",
+		"position": "top",
+		"exclusive": false,
+		"width": 31,
+		"start_hidden": true,
+		"fixed-center": true,
+
+		"modules-left": [],
+		"modules-center": [
+			"group/both"
+		],
+		"modules-right": [],
+
+		"group/both": {
+			"orientation": "horizontal",
+			"modules": [
+				"group/left",
+				"group/right"
+			]
+		},
+
+		"group/left": {
+			"orientation": "vertical",
+			"modules": [
+				"group/profile",
+				"group/slider",
+				"group/boxes"
+			]
+		},
+
+		"group/right": {
+			"orientation": "vertical",
+			"modules": [
+				"group/music"
+			]
+		},
+
+		"group/slider": {
+			"orientation": "vertical",
+			"modules": [
+				"group/audio",
+				"group/brightness"
+			]
+		},
+
+		"group/audio": {
+			"orientation": "horizontal",
+			"modules": [
+				"custom/audio",
+				"pulseaudio/slider"
+			]
+		},
+		"custom/audio": {
+			"format": "<span font='lucide'>&#58186;</span>",
+			"tooltip": false
+		},
+		"pulseaudio/slider": {
+			"min": 0,
+			"max": 100,
+			"orientation": "horizontal"
+		},
+
+		"group/brightness": {
+			"orientation": "horizontal",
+			"modules": [
+				"custom/brightness",
+				"backlight/slider"
+			]
+		},
+		"custom/brightness": {
+			"format": "<span font='lucide'>&#58034;</span>",
+			"tooltip": false
+		},
+		"backlight/slider": {
+			"min": 0,
+			"max": 100,
+			"orientation": "horizontal"
+		},
+
+
+		"group/boxes": {
+			"orientation": "vertical",
+			"modules": [
+				"group/boxatas",
+				"group/boxtengah"
+			]
+		},
+		"group/boxatas": {
+			"orientation": "horizontal",
+			"modules": [
+				"network",
+				"bluetooth",
+				"custom/screenshot"
+			]
+		},
+		"group/boxtengah": {
+			"orientation": "horizontal",
+			"modules": [
+				"custom/clipboard",
+				"custom/colorpicker",
+				"custom/screenrecord"
+			]
+		},
+
+		"network": {
+			"format": "<span font='lucide'>&#57774;</span>",
+			"tooltip-format": "{ifname}"
+		},
+		"bluetooth": {
+			"format": "<span font='lucide'>&#57436;</span>"
+		},
+		"custom/screenshot": {
+			"format": "<span font='lucide'>&#58676;</span>",
+			"tooltip-format": "screenshot",
+			"on-click": "$HOME/.config/bash/screenshot bar",
+			"on-click-right": "$HOME/.config/bash/screenshot bar2"
+		},
+		"custom/clipboard": {
+			"format": "<span font='lucide'>&#57478;</span>",
+			"tooltip-format": "clipboard",
+			"on-click": "$HOME/.config/waybar/utilities/util.sh clipboard",
+			"on-click-right": "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+		},
+		"custom/colorpicker": {
+			"format": "<span font='lucide'>&#57659;</span>",
+			"tooltip-format": "colorpicker",
+			"on-click": "$HOME/.config/waybar/utilities/util.sh colorpicker",
+			"on-click-right": "hyprpicker -a"
+		},
+		"custom/screenrecord": {
+			"format": "<span font='lucide'>&#57765;</span>",
+			"tooltip-format": "screenrecord",
+			"on-click": "$HOME/.config/bash/screenrecord record",
+			"on-click-right": "$HOME/.config/bash/screenrecord record2",
+			// "return-type": "json",
+			// "exec": "$HOME/.config/waybar/utilities/media.sh screenrecord"
+		},
+
+
+		"group/profile": {
+			"orientation": "vertical",
+			"modules": [
+				"custom/username",
+				"custom/wmname"
+			]
+		},
+		"custom/username": {
+			"format": "{}",
+			"tooltip": false,
+			"justify": "center",
+			"interval": "once",
+			"exec": "whoami"
+		},
+		"custom/wmname": {
+			"format": "{}",
+			"tooltip": false,
+			"justify": "center",
+			"interval": "once",
+			"exec": "$HOME/.config/waybar/utilities/scripts/wmname"
+		},
+
+
+		"group/music": {
+			"orientation": "vertical",
+			"modules": [
+				"image#thumbnail",
+				"group/text"
+			]
+		},
+
+		"image#thumbnail": {
+			"path": "/tmp/mediathumbnail",
+			"size": 148,
+			"signal": 4,
+			"interval": 5,
+			"on-click": "imv -s full /tmp/fullthumbnail"
+		},
+
+		"group/text": {
+			"orientation": "vertical",
+			"modules": [
+				"custom/title",
+				"custom/artist",
+				"group/button"
+			]
+		},
+
+		"group/button": {
+			"orientation": "horizontal",
+			"modules": [
+				"custom/prev",
+				"custom/play",
+				"custom/next"
+			]
+		},
+
+		"custom/title": {
+			"format": "{}",
+			"tooltip": false,
+			"return-type": "json",
+			"justify": "center",
+			"exec": "$HOME/.config/waybar/utilities/scripts/scroll-title"
+		},
+
+		"custom/artist": {
+			"format": "{}",
+			"return-type": "json",
+			"tooltip": false,
+			"justify": "center",
+			"max-length": 20,
+			"exec": "$HOME/.config/waybar/utilities/scripts/artist"
+		},
+
+		"custom/prev": {
+			"format": "<span font='lucide'>&#57695;</span>",
+			"tooltip": false,
+			"on-click": "playerctl previous"
+		},
+		"custom/play": {
+			"format": "<span font='lucide'>{icon}</span>",
+			"format-icons": {
+				"paused": "&#57660;",
+				"playing": "&#57646;",
+				"stopped": "&#57778;"
+			},
+			"tooltip": false,
+			"return-type": "json",
+			"exec": "$HOME/.config/waybar/utilities/scripts/player-status",
+			"on-click": "playerctl play-pause",
+			"justify": "center"
+		},
+		"custom/next": {
+			"format": "<span font='lucide'>&#57696;</span>",
+			"tooltip": false,
+			"on-click": "playerctl next"
+		}
+	}
+]

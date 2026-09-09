@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Tiny colored bunnies fetch script
+# originally created by @elenapan
+# customized and optimized by @ahmadinne
+
+# colors
+r=$'\e[31m'
+g=$'\e[32m'
+b=$'\e[34m'
+y=$'\e[33m'
+B=$'\e[1m'
+C=$'\e[0m'
+
+k=Kr
+o=Os
+s=Sh
+p=Pk
+
+# os name
+mapfile -tn 1 osnm < "/etc/os-release"
+osnm=${osnm[0]#*NAME=}
+osnm=${osnm//\"/}
+
+# kernel version
+mapfile -t krnv < "/proc/sys/kernel/osrelease"
+
+# shell name
+shll=${SHELL/*\/}
+shll=${shll^}
+
+# pkg count v1
+shopt -s nullglob
+set -- /var/lib/pacman/local/*/
+pkgs=$#
+
+# pkg count v2
+# pkgs=(/var/lib/pacman/local/*/)
+# pkgs=${#pkgs[@]}
+
+# bunny art
+bun1="  _    "
+bun2=" / ) _ "
+bun3="( / (\)"
+bun4="( $B. .$C) "
+bun5="c($r\"$C)($r\"$C)"
+
+# output art
+bunny="""
+   $bun1
+   $bun2   $B$k $C$krnv
+   $bun3   $B$o $C$osnm
+   $bun4   $B$s $C$shll
+   $bun5   $B$p $C$pkgs
+"""
+echo "$bunny"

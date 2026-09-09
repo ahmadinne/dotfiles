@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+declare -A max_w
+declare -A max_h
+declare -A max_rr
+declare -A max_rr_full
+
+name=""
+in_modes=false
+
+while IFS= read -r line; do
+	# check if line does not start with space
+	if [[ "$line" != [[:space:]]* && -n "$line" ]]; then
+		name="${line%% *}"
+		in_modes=false
+
+		max_w["$name"]=0
+		max_h["$name"]=0
+		max_rr["$name"]=0
+		max_rr_full["$name"]=""
+		continue
+	fi
+
+	if [[ "$line" == *"Modes:"* ]]; then
+		in_modes=true
+		continue
+	elif [[ "$line" == *"Position:"* ]]; then
+		in_modes=false
+		continue
+	fi
+
+	if [[ "$in_modes" == true && "$line" == *" px, "* ]]; then
+		mode_str="${line#"${line%%[![:space:]]*}"}"
+
+		res="${mode_str%% px,*}"
+		w="${res%x*}"
+		h="${res#*x}"
+
+		rr_str="${mode_str#*px, }"
+		rr_full="${rr_str%% Hz*}"
+		rr="${rr_full%.*}"
+
+		cur_max_w=${max_w["$name"]}
+		cur_max_h=${max_h["$name"]}
+		cur_max_rr=${max_rr["$name"]}
+
+		is_better=false
+		if [[ "$w" -gt "$cur_max_w" ]]; then
+			is_better=true
+		elif [[ "$w" -eq "$cur_max_w" ]]; then
+			if [[ "$h" -gt "$cur_max_h" ]]; then
+				is_better=true
+			elif [[ "$h" -eq "$cur_max_h" ]]; then
+				if [[ "$rr" -gt "$cur_max_rr" ]]; then
+					is_better=true
+				fi
+			fi
+		fi
+
+		if [[ "$is_better" == true ]]; then
+			max_w["$name"]="$w"
+			max_h["$name"]="$h"
+			max_rr["$name"]="$rr"
+			max_rr_full["$name"]="$rr_full"
+		fi
+	fi
+done < <(wlr-randr)
+
+detect=true
+while IFS= read -r line; do
+	if [[ "$detect" == true ]]; then
+		m_main="${line%% *}"
+		detect=false
+		continue
+	fi
+	if [[ "$line" != [[:space:]]* && -n "$line" ]]; then
+		m_sub="${line%% *}"
+		break
+	fi
+done < <(wlr-randr)
+
+if [[ -n "${max_w["$m_main"]}" && -n "${max_w["$m_sub"]}" ]]; then
+	hdmi_w=${max_w["$m_main"]}
+	hdmi_h=${max_h["$m_main"]}
+	hdmi_rr=${max_rr_full["$m_main"]}
+
+	edp_w=${max_w["$m_sub"]}
+	edp_h=${max_h["$m_sub"]}
+	edp_rr=${max_rr_full["$m_sub"]}
+
+	edp_x=$(( (hdmi_w - edp_w) / 2 ))
+	edp_y=$hdmi_h
+
+	echo "Set $m_main to ${hdmi_w}x${hdmi_h}@${hdmi_rr} at 0,0"
+	wlr-randr --output "$m_main" \
+		--mode "${hdmi_w}x${hdmi_h}@${hdmi_rr}" \
+		--pos 0,0
+
+	echo "Set $m_sub to ${edp_w}x${edp_h}@${edp_rr} at ${edp_x},${edp_y}"
+	wlr-randr --output "$m_sub" \
+		--mode "${edp_w}x${edp_h}@${edp_rr}" \
+		--pos "${edp_x},${edp_y}"
+else
+	echo "Error: one or both specified monitor were not found."
+fi

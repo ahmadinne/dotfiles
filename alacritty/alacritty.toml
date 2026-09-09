@@ -1,0 +1,36 @@
+[general]
+live_config_reload = true
+import = ["colors.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+normal = { family = "monospace", style = "Regular" }
+size = 12
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+vi_mode_style = { shape = "Block", blinking = "On" }
+
+[window.padding]
+x = 20
+y = 20
+
+[keyboard]
+bindings = [
+	{ mods = "Shift", key = "Escape", chars = "~" },
+	{ 
+		mods = "Control|Shift",
+		key = "Space",
+		action = "ToggleViMode",
+		mode = "~Search"
+	},
+	{ key = "i", action = "ToggleViMode", mode = "Vi" },
+	{ key = "q", action = "ToggleViMode", mode = "Vi" },
+	{ key = "Escape", action = "ToggleViMode", mode = "Vi" },
+	{ mods = "Shift", key = "Y", action = "Copy", mode = "Vi|~Search" },
+	{ mods = "Shift", key = "H", action = "High", mode = "Vi|~Search" },
+	{ mods = "Shift", key = "M", action = "Middle", mode = "Vi|~Search" },
+	{ mods = "Shift", key = "L", action = "Low", mode = "Vi|~Search" },
+]

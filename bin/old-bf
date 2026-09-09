@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+# Tiny colored bunnies fetch script
+# originally created by @elenapan
+# customized and optimized to my liking @ahmadinne
+
+# cached file
+cache="/dev/shm/bfcache"
+
+if [[ -f "$cache" ]]; then
+	# native 'cat' command on bash
+	IFS= read -r -d '' cached < "$cache" || true
+	printf "%s" "$cached"
+else
+	# colors
+	r=$'\e[31m'
+	g=$'\e[32m'
+	b=$'\e[34m'
+	y=$'\e[33m'
+
+	d=$'\e[1m'
+	c=$'\e[0m'
+
+	o=os
+	k=kr
+	s=sh
+	p=pk
+
+	# os name
+	while IFS='=' read -r key val; do
+		if [[ "$key" == "NAME" ]]; then
+			osnm="${val//\"/}"
+			osnm="${osnm/ */}"
+			osnm="${osnm,,}"
+			break
+		fi
+	done < "/etc/os-release"
+
+	# kernel version
+	IFS= read -r krn < /proc/sys/kernel/osrelease
+	krnv=${krn/-*}
+
+	# shell name
+	shll=${SHELL/*\/}
+
+	# bunny art
+	bun1="  _"
+	bun2=" / ) _"
+	bun3="( / (\)"
+	bun4="( $d· ·$c) "
+	bun5="c($r\"$c)($r\"$c)"
+
+	# output art
+	bunny="
+   $bun1
+   $bun2	
+   $bun3  $d$r$k $c$krnv
+   $bun4  $d$b$o $c$osnm
+   $bun5  $d$g$s $c$shll
+	"
+	printf "%s\n" "$bunny" > "$cache"
+	printf "%s\n" "$bunny"
+fi
+
+# (\ /)
+# ( · ·)
+# c(")(")
+
+# (\ /)
+# ( . .)
+# c(")(")
+
+#		_
+#  / ) _
+# ( / (\)
+# ( · ·)
+# c(")(")

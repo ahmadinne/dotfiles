@@ -1,0 +1,13 @@
+Type=X-GNOME-Metatheme
+
+[Desktop Entry]
+Name=paradise
+Comment=the paradise theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=paradise
+MetacityTheme=paradise
+IconTheme=gnome
+CursorTheme=plan9cursors
+ButtonLayout=menu:minimize,maximize,close

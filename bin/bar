@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+bar_list=(
+	"base"
+	"osd/volume"
+	"osd/brightness"
+	"utilities"
+	"calendar"
+	"power"
+)
+
+function spawn {
+	local name="$1"
+	exec waybar \
+		-c ~/.config/waybar/"$name"/config.jsonc \
+		-s ~/.config/waybar/"$name"/style.css & disown
+}
+
+function toggle {
+	local name="$1"
+	pkill -USR1 -f "waybar.*${name}.*config"
+}
+
+function refresh {
+	if $(killall waybar); then
+		for bar in "${bar_list[@]}"; do spawn "$bar"; done
+		[ $? -eq 0 ] && notify-send -u low -e "Bar refreshed!" || \
+			notify-send -u critical -e "failed to refresh bar"
+		makoctl reload && notify-send -u low -e "Notification Daemon reloaded!" || \
+			notify-send -u critical -e "failed to reload notifs daemon"
+	else
+		for bar in "${bar_list[@]}"; do spawn "$bar"; done
+	fi
+}
+
+case $1 in
+	spawn) spawn $2 ;;
+	toggle) toggle $2 ;;
+	refresh) refresh ;;
+	*) 
+		cat <<- HELP
+		usage: bar <option>
+
+		options:
+		   spawn	[name]
+		   toggle	[name]
+		   refresh
+		HELP
+		;;
+esac

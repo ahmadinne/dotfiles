@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+while IFS=": " read -r name value; do
+	[[ "$name" != [[:space:]]* && -n "$name" ]] && address="0x${value%% *}"
+	[[ "$name" == *"title"* ]] && title="$value"
+	[[ "$name" == *"pid"* ]] && id="$value"
+	[[ "$name" == *"class"* ]] && cl="$value"
+done < <(hyprctl activewindow)
+
+[[ -z "$title" ]] && exit 1
+
+message="Close '${title}'? [y/N]"
+width=$(( ${#message} + 10 ))
+
+one="Yes"
+two="No"
+
+choice=$(echo -e "$one\n$two" | \
+	rofi -dmenu -i \
+	-mesg "$message" \
+	-selected-row 1 \
+	-config $HOME/.config/rofi/kill-confirmation.rasi \
+	-theme-str "window { width: ${width}ch; }")
+
+case $choice in
+	$one)
+		hyprctl dispatch closewindow address:"$address" || \
+			hyprctl dispatch closewindow pid:"$id" || \
+			hyprctl dispatch killwindow pid:"$id" || \
+			kill "$id" || \
+			kill -9 "$id"
+		;;
+	*) exit 1 ;;
+esac

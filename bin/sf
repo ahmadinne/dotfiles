@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Simple and quick fetch script
+# customized and optimized to my liking @ahmadinne
+
+# colors
+r=$'\e[31m'
+g=$'\e[32m'
+b=$'\e[34m'
+y=$'\e[33m'
+
+d=$'\e[1m'
+c=$'\e[0m'
+
+k="Kernel"
+o="Os    "
+s="Shell "
+u="Uptime"
+p="Pkgs  "
+
+# os name
+mapfile -t osnm < "/etc/os-release"
+osnm=${osnm[0]#*NAME=}
+osnm=${osnm//\"/}
+
+# kernel version
+mapfile -t krnv < "/proc/sys/kernel/osrelease"
+
+# shell name
+shll=${SHELL/*\/}
+shll=${shll^}
+
+# pkg count
+shopt -s nullglob
+set -- /var/lib/pacman/local/*/
+pkgs=$#
+
+uptm=$(uptime -p); uptm="${uptm#* }"; uptm="${uptm/ hours/h}"; uptm="${uptm/ minutes/m}"
+
+# output art
+output="""
+$d$g$USER@$HOSTNAME $c
+$d$k   $c$krnv
+$d$o   $c$osnm
+$d$s   $c$shll
+$d$u   $c$uptm
+$d$p   $c$pkgs
+"""
+echo -e "$output"

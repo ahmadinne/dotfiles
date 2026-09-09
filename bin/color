@@ -1,0 +1,161 @@
+#!/usr/bin/env bash
+# show colors!
+
+option=$1
+choice=$2
+counts=${#@}
+satu=$3
+dua=$4
+tiga=$5
+
+function tiny {
+    _() { echo -e "\e[$1"{0..7}"m  \e[m"; }
+
+    echo
+    _ 4
+    _ 10
+    echo
+}
+
+# Inspired by u/dkeg
+# Cheers! Addy
+function blocks {
+    f=3 b=4
+    for j in f b; do
+        for i in {0..7}; do
+            printf -v $j$i %b "\e[${!j}${i}m"
+        done
+    done
+    d=$'\e[1m'
+    t=$'\e[0m'
+    v=$'\e[7m'
+
+    cat <<- EOF
+
+         $f1██████$d██$t $f2██████$d██$t $f3██████$d██$t $f4██████$d██$t $f5██████$d██$t $f6██████$d██$t 
+         $f1██████$d██$t $f2██████$d██$t $f3██████$d██$t $f4██████$d██$t $f5██████$d██$t $f6██████$d██$t 
+         $f1██████$d██$t $f2██████$d██$t $f3██████$d██$t $f4██████$d██$t $f5██████$d██$t $f6██████$d██$t 
+         $ft██████$d$f7██$t $ft██████$d$f7██$t $ft██████$d$f7██$t $ft██████$d$f7██$t $ft██████$d$f7██$t $ft██████$d$f7██$t 
+
+EOF
+}
+
+# https://github.com/manas140/sh/
+function medium {
+    cr="\033[1;31m"
+    cg="\033[1;32m"
+    help() { printf "${cg}cl: show color scheme
+        Usage: cl
+        ${cr}Report issues at: https://github.com/manas140/sh/\n"; }
+
+        case $1 in 
+            *h*)
+                help;;
+            *)
+                printf "\n"
+                for a in 3 9; do
+                    for b in 0 1 2 3 4 5 6 7; do 
+                        printf "\033[7;$a%sm    \033[1;0m " "$b"
+                    done
+                    printf "\n"
+                done
+                printf "\n"
+        esac
+}
+
+# Author: GekkoP
+# Source: http://linuxbbq.org/bbs/viewtopic.php?f=4&t=1656#p33189
+function panes {
+    f=3 b=4
+    for j in f b; do
+        for i in {0..7}; do
+            printf -v $j$i %b "\e[${!j}${i}m"
+        done
+    done
+    d=$'\e[1m'
+    t=$'\e[0m'
+    v=$'\e[7m'
+
+
+    cat <<- EOF
+
+         $f0████$d▄$t  $f1████$d▄$t  $f2████$d▄$t  $f3████$d▄$t  $f4████$d▄$t  $f5████$d▄$t  $f6████$d▄$t  $f7████$d▄$t  
+         $f0████$d█$t  $f1████$d█$t  $f2████$d█$t  $f3████$d█$t  $f4████$d█$t  $f5████$d█$t  $f6████$d█$t  $f7████$d█$t  
+         $f0████$d█$t  $f1████$d█$t  $f2████$d█$t  $f3████$d█$t  $f4████$d█$t  $f5████$d█$t  $f6████$d█$t  $f7████$d█$t  
+         $d$f0 ▀▀▀▀  $d$f1 ▀▀▀▀   $f2▀▀▀▀   $f3▀▀▀▀   $f4▀▀▀▀   $f5▀▀▀▀   $f6▀▀▀▀   $f7▀▀▀▀$t  
+
+EOF
+}
+
+function num {
+	for C in {0..255}; do
+		tput setab $C
+		echo -n "$C "
+	done
+	tput sgr0
+	echo
+}
+
+function print {
+    printf "${cr}"
+    window_size="100x100"
+    cr="\033[1;31m"
+    cg="\033[1;32m"
+    cb="\033[1;34m"
+    file=image.png
+
+    [[ ! $(which convert) ]] && printf "${cr}Error: Could not find 'convert', Make sure you have ImageMagick installed.\n" && exit 1
+    if [[ -z "$choice" ]]; then
+        echo "ex.usage: color print 151515(hex)"   
+        exit 1
+    else
+        bg="#$choice"
+        magick -size "$window_size" xc:$bg -flatten $file
+        printf "${cg}Image For $bg Created\n"
+    fi
+}
+
+function help {
+	cat << HELP
+usage: color <option>
+
+options:
+	convert
+	blocks
+	medium
+	panes
+	tiny
+	num
+	print
+HELP
+}
+
+function convert {
+	if [[ "$counts" -gt 3 ]]; then
+		for c in ${*:-`< /dev/stdin`}; {
+			printf -v out '%s%02X' "$out" "$c"
+		}
+		printf '#%s\n' "$out"
+	else
+		hex=${*:-`< /dev/stdin`}
+		hex=${hex#\#} # strip '#'
+		echo "$hex"
+
+		for ((; i < ${#hex}; i += 2)) {
+			out+=($((16#${hex:i:2})))
+		} 2> /dev/null
+
+		printf '%s\n' "${out[*]}"
+	fi
+}
+
+case $option in
+    blocks) blocks ;;
+    medium) medium ;;
+    panes) panes ;;
+    tiny) tiny ;;
+	num) num ;;
+    print) print ;;
+	convert) convert $choice $satu $dua;;
+	*) help ;;
+esac

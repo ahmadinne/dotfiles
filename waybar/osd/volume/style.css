@@ -1,0 +1,50 @@
+@import "../../colors.css";
+
+window#waybar {
+	background-color: transparent;
+}
+
+window#waybar > box {
+	background-color: transparent;
+	margin: 0.5rem;
+}
+
+.modules-center {
+	background-color: @black;
+	color: @foreground;
+	border-radius: 0.2rem;
+	padding: 0.4rem;
+	transition: all 0.3s ease-in-out;
+}
+
+#pulseaudio.text {
+	padding: 0.25rem 0rem;
+	margin: 0.2rem;
+	border-radius: 0.1rem;
+}
+
+#pulseaudio-slider {
+	font-weight: bold;
+	background-color: @bg2;
+	margin: 0.2rem;
+	padding: 0.2rem;
+	border-radius: 0.1rem;
+}
+
+#pulseaudio-slider slider {
+	min-height: 0.5rem;
+	min-width: 7rem;
+	opacity: 0;
+	border-radius: 0px;
+	background-color: transparent;
+}
+
+#pulseaudio-slider trough {
+	border-radius: 0.1rem;
+	background-color: transparent;
+}
+
+#pulseaudio-slider highlight {
+	border-radius: 0.1rem;
+	background-color: @foreground;
+}

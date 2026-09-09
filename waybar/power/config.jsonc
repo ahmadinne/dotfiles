@@ -1,0 +1,150 @@
+[
+	{
+		"layer": "top",
+		"position": "top",
+		"exclusive": false,
+		"start_hidden": true,
+		"fixed-center": true,
+
+		"modules-center": [ "custom/empty" ],
+		"include": [ "~/.config/waybar/empty.json" ],
+	},
+
+	{
+		"layer": "top",
+		"position": "right",
+		"exclusive": false,
+		"spacing": 0,
+		"start_hidden": true,
+
+		"modules-left": [ "group/both" ],
+		"modules-center": [],
+		"modules-right": [],
+
+		// Groups
+		"group/both": {
+			"orientation": "vertical",
+			"modules": [
+				"group/middle",
+				"group/bottom"
+			]
+		},
+
+		"group/middle": {
+			"orientation": "vertical",
+			"modules": [
+				"group/middleone",
+				"group/middletwo"
+			]
+		},
+		"group/middleone": {
+			"orientation": "horizontal",
+			"modules": [
+				"group/cpu",
+				"group/temperature"
+			]
+		},
+		"group/middletwo": {
+			"orientation": "horizontal",
+			"modules": [
+				"group/memory",
+				"group/disk"
+			]
+		},
+
+		"group/cpu": {
+			"orientation": "vertical",
+			"modules": [
+				"custom/cpu",
+				"cpu#text"
+			]
+		},
+		"custom/cpu": {
+			"format": "    ",
+			"return-type": "json",
+			"exec": "~/.config/waybar/power/scripts/cpu"
+		},
+		"cpu#text": {
+			"interval": 1,
+			"format": "{usage}%"
+		},
+
+		"group/temperature": {
+			"orientation": "vertical",
+			"modules": [
+				"custom/temperature",
+				"temperature#text"
+			]
+		},
+		"custom/temperature": {
+			"format": "    ",
+			"return-type": "json",
+			"exec": "~/.config/waybar/power/scripts/temp"
+		},
+		"temperature#text": {
+			"format": "{temperatureC}°C"
+		},
+
+		"group/memory": {
+			"orientation": "vertical",
+			"modules": [
+				"custom/memory",
+				"memory#text"
+			]
+		},
+		"custom/memory": {
+			"format": "    ",
+			"return-type": "json",
+			"exec": "~/.config/waybar/power/scripts/ram"
+		},
+		"memory#text": {
+			"format": "{percentage}%"
+		},
+
+		"group/disk": {
+			"orientation": "vertical",
+			"modules": [
+				"custom/disk",
+				"disk#text"
+			]
+		},
+		"custom/disk": {
+			"format": "    ",
+			"return-type": "json",
+			"exec": "~/.config/waybar/power/scripts/disk"
+		},
+		"disk#text": {
+			"format": "{percentage_used}%"
+		},
+
+
+
+		"group/bottom": {
+			"orientation": "inherit",
+			"modules": [ 
+				"group/powerprofiles",
+				"custom/pptext"
+			]
+		},
+		"group/powerprofiles": {
+			"orientation": "horizontal",
+			"modules": [
+				"power-profiles-daemon#powersaver",
+				"power-profiles-daemon#balanced",
+				"power-profiles-daemon#performance"
+			]
+		},
+		"custom/pptext": {
+			"format": "power profiles"
+		},
+		"power-profiles-daemon#powersaver": {
+			"format": "PS"
+		},
+		"power-profiles-daemon#balanced": {
+			"format": "BL"
+		},
+		"power-profiles-daemon#performance": {
+			"format": "PF"
+		}
+	}
+]

@@ -1,0 +1,39 @@
+@import "../../colors.css";
+
+window#waybar {
+	background-color: transparent;
+}
+
+window#waybar > box {
+	background-color: transparent;
+	margin: 0.5rem;
+}
+
+.modules-center {
+	background-color: @background;
+	color: @foreground;
+	border-radius: 0.2rem;
+	padding: 0.3rem 0.5rem;
+	transition: all 0.3s ease-in-out;
+}
+
+#backlight-slider slider {
+	min-height: 0px;
+	min-width: 2rem;
+	opacity: 0;
+	border-radius: 0px;
+	background-color: transparent;
+}
+
+#backlight-slider trough {
+	min-height: 0.2rem;
+	min-width: 2rem;
+	border-radius: 0.1rem;
+	background-color: alpha(@foreground, 0.05);
+}
+
+#backlight-slider highlight {
+	min-width: 0px;
+	border-radius: 0.1rem;
+	background-color: @foreground;
+}

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+poweroff="Shutdown - Poweroff the computer"
+  logout="Logout   - Logout the user"
+  reboot="Restart  - Reboot the computer"
+    lock="Lock     - Lock the computer"
+
+
+choice=$(echo -e "$poweroff\n$lock\n$logout\n$reboot" | rofi -dmenu -i -selected-row 1)
+
+function confirm {
+	local choice=${choice%% *}
+	yes="Yes - Confirm to $choice"
+	no="No  - Cancel"
+	confirm=$(echo -e "$yes\n$no" | rofi -dmenu -i)
+	[[ "$confirm" == "$yes" ]] && return 0 || return 1
+}
+
+function closeall {
+	while IFS=" " read -r w val x; do
+		if [[ "$w" == "Window" ]]; then
+			local addr="address:0x${val}"
+			hyprctl dispatch closewindow "$addr" || hyprctl dispatch killwindow "$addr"
+		fi
+	done < <(hyprctl clients)
+}
+
+case $choice in
+	$poweroff) confirm && closeall && poweroff ;;
+	$logout) confirm && hyprctl dispatch exit ;;
+	$reboot) confirm && closeall && reboot ;;
+	$lock) hyprlock ;;
+esac

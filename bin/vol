@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# audio devices
+active="$(pactl get-default-sink analog-output)"
+in_modes=false
+
+function switch_menu {
+	choice=$(while IFS=" = " read -r name value; do
+		[[ "$name" == *"alsa.card_name"* ]] && value="${value//\"/}" && echo "$value"
+	done < <(pactl list sinks) | rofi -dmenu -i)
+
+	[ -z "$choice" ] && exit 1
+
+	while IFS=" = " read -r name value; do
+		if [[ "$line" != [[:space:]]* && -n "$line" ]]; then
+			in_modes=false
+			continue
+		fi
+
+		if [[ "$name" == *"alsa.card_name"* && "$value" == *"$choice"* ]]; then
+			in_modes=true
+			continue
+		elif [[ "$name" == *"Ports:"* ]]; then
+			in_modes=false
+			continue
+		fi
+
+		if [[ "$in_modes" == true && "$name" == *"node.name"* ]]; then
+			nn="${value##* }" && nn="${nn//\"/}"
+
+			pactl set-default-sink "$nn" && notify-send --transient "Audio Output switched:" "$choice"
+			exit 0
+		fi
+	done < <(pactl list sinks)
+}
+
+function grep_name {
+	while IFS=": " read -r name value; do
+		if [[ "$name" == *"Name" ]]; then
+			echo "$value"
+		fi
+	done < <(pactl list sinks)
+}
+
+function switch {
+	list=($(grep_name))
+	count="${#list[@]}"
+	tmp_file="/tmp/audio_output"
+	total=$(( count - 1 ))
+
+	[[ -f "$tmp_file" ]] && num=$(cat "$tmp_file") || num=0; echo "$num" > "$tmp_file"
+	if (( num < total )); then (( num++ )); else num=0; fi
+
+	echo "$num" > "$tmp_file"
+	pactl set-default-sink "${list[$num]}" && notify-send "Audio switched" "${list[$num]}"
+}
+
+
+case $1 in
+	switch) switch ;;
+	menu) switch_menu ;;
+	up | +) wpctl set-volume -l 2 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.config/waybar/osd/volume/scripts/trigger ;;
+	down | -) wpctl set-volume -l 2 @DEFAULT_AUDIO_SINK@ 5%- && ~/.config/waybar/osd/volume/scripts/trigger ;;
+	mute | toggle) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/waybar/osd/volume/scripts/trigger ;;
+esac

@@ -1,0 +1,15 @@
+{
+	"name": "brightness",
+	"layer": "top",
+	"position": "bottom",
+	"exclusive": false,
+	"start_hidden": true,
+	"passthrough": true,
+
+	"modules-center": [ "backlight/slider" ],
+	"backlight/slider": {
+		"min": 0,
+		"max": 100,
+		"orientation": "horizontal"
+	}
+}

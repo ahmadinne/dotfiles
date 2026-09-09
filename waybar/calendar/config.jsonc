@@ -1,0 +1,33 @@
+[
+	{
+		"layer": "top",
+		"position": "top",
+		"exclusive": false,
+		"start_hidden": true,
+		"fixed-center": true,
+
+		"modules-center": [ "custom/empty" ],
+		"include": [ "~/.config/waybar/empty.json" ]
+	},
+
+	{
+		"layer": "top",
+		"position": "left",
+		"exclusive": false,
+		"start_hidden": true,
+
+		"modules-left": [ "custom/calendar" ],
+		"modules-center": [],
+		"modules-right": [],
+
+		"custom/calendar": {
+			"tooltip": false,
+			"return-type": "json",
+			"justify": "center",
+			"exec": "$HOME/.config/waybar/calendar/scripts/calendar",
+			"on-click": "$HOME/.config/waybar/calendar/scripts/calendar prev",
+			"on-click-middle": "$HOME/.config/waybar/calendar/scripts/calendar current",
+			"on-click-right": "$HOME/.config/waybar/calendar/scripts/calendar next"
+		}
+	}
+]

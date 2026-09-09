@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+tmp="/tmp/workspace_address_history"; mkdir -p "$tmp"
+IFS=" " read -r bla blabla wsid blablabla < <(hyprctl activeworkspace)
+float_address="$tmp/last_float_window_address_$wsid"
+tiled_address="$tmp/last_tiled_window_address_$wsid"
+
+fl_stat() {
+	while IFS=" " read -r name value; do
+		local name=${name#$'\t'}
+
+		if [[ "$name" == "Window" ]]; then
+			local address="0x${value%% *}"
+			continue
+		fi
+
+		if [[ "$name" == "floating:" ]]; then
+			[[ "$value" -eq 0 ]] && echo "$address" > "$tiled_address"
+			[[ "$value" -eq 1 ]] && echo "$address" > "$float_address"
+			return $value
+		fi
+	done < <(hyprctl activewindow)
+}
+
+check_addr() {
+	local haha=1; local hehe=1
+	while IFS=" " read -r name value; do
+		local name=${name#$'\t'}
+
+		if [[ "$name" == "lastwindow:" ]]; then
+			local address=$value
+			[[ "$address" == $1 ]] && haha=0 && break
+		fi
+	done < <(hyprctl activeworkspace)
+
+	while IFS=" " read -r name value; do
+		if [[ "$name" == "Window" ]]; then
+			local address="0x${value%% *}"
+			[[ "$address" == $2 ]] && hehe=0 && break
+		fi
+	done < <(hyprctl clients)
+
+	[[ "$haha" -eq 0 ]] && [[ "$hehe" -eq 0 ]] && return 0 || return 1
+}
+
+cyclenext_tiled_cmd="hyprctl dispatch layoutmsg cyclenext"
+cycleprev_tiled_cmd="hyprctl dispatch layoutmsg cycleprev"
+cyclenext_float_cmd="hyprctl dispatch cyclenext floating"
+cycleprev_float_cmd="hyprctl dispatch cyclenext floating prev"
+
+switch() {
+	if fl_stat; then
+		check_addr $(<"$tiled_address") $(<"$float_address") && hyprctl dispatch focuswindow address:$(<"$float_address") && exit 0
+		hyprctl dispatch cyclenext floating
+	else
+		check_addr $(<"$float_address") $(<"$tiled_address") && hyprctl dispatch focuswindow address:$(<"$tiled_address") && exit 0
+		hyprctl dispatch cyclenext tiled
+	fi
+}
+
+cyclenext() {
+	fl_stat && $cyclenext_tiled_cmd || $cyclenext_float_cmd
+}
+
+cycleprev() {
+	fl_stat && $cycleprev_tiled_cmd || $cycleprev_float_cmd
+}
+
+
+case $1 in
+	cyclenext | next) cyclenext ;;
+	cycleprev | prev) cycleprev ;;
+	switch) switch ;;
+	*)
+		cat <<-HELP
+		usage: focus <option>
+
+		options:
+		   cyclenext
+		   cycleprev
+		   switch
+		HELP
+		;;
+esac

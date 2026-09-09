@@ -1,0 +1,68 @@
+configuration {
+	hover-select: true;
+	click-to-exit: true;
+	kb-row-up: "";
+	kb-row-down: "";
+	kb-cancel: "MousePrimary,Escape";
+	kb-accept-entry: "Control+y,Return";
+	kb-select-1: "y,Y";
+	kb-select-2: "n,N";
+	me-select-entry: "";
+	me-accept-entry: "!MousePrimary";
+	steal-focus: true;
+}
+
+@theme "/dev/null"
+@import "paradise.rasi"
+
+window {
+	location: center;
+	spacing: 0;
+	children: [ box ];
+	border-radius: 3;
+}
+
+box {
+	padding: 0.75em;
+	spacing: 0.5em;
+	children: [ message, listview ];
+	// border: 2px;
+	// border-color: @green;
+	border-radius: 3;
+}
+
+message {
+	padding: 0.5em;
+	border-color: @fg;
+}
+
+textbox {
+	text-color: @fg;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+}
+
+listview {
+	enabled: false;
+	layout: vertical;
+	lines: 2;
+}
+
+listview, element, element selected, element-text, element-icon {
+  cursor: pointer;
+}
+
+element {
+  text-color: @al;
+  padding: 0.75em;
+}
+element selected {
+  text-color: @fg;
+}
+element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+}
+

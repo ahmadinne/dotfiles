@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# vars
+wal_dir="${HOME}/Pictures/Wallpaper"
+cch_dir="${HOME}/.cache/thumbnails/wp"
+act_wal="${HOME}/.cache/activeWallpaper"
+rofi_cmd="rofi -i -dmenu -theme ${HOME}/.config/rofi/wallpaper.rasi"
+[ ! -d "$wal_dir" ] && mkdir -p "$wal_dir"
+[ ! -d "$cch_dir" ] && mkdir -p "$cch_dir"
+
+help() {
+	cat <<-HELP
+		usage: wal <option>
+
+		options:
+		   refresh		refresh the wallpaper
+		   menu			open wallpaper selection menu
+	HELP
+}
+
+refresh() {
+	if [ -f "$act_wal" ]; then
+		pkill -x swaybg &&\
+			exec swaybg -m fill -i "$act_wal" & disown ||\
+			exec swaybg -m fill -i "$act_wal" & disown 
+	else
+		echo "there's no wallpaper set."
+		notify-send -u low -e "there's no wallpaper set."
+		exit 1
+	fi
+}
+
+menu() {
+	for images in "$wal_dir"/*.{jpg,jpeg,png,webp}; do
+		if [ -f "$images" ]; then
+			image_name="${images##*/}"
+			if [ ! -f "${cch_dir}/${image_name}" ]; then
+				notify-send --urgency=low --transient "Fetching Wallpaper..." "From ${wal_dir}..." &&\
+					magick "$images" -thumbnail 480x480^ -gravity center -extent 480x480 "${cch_dir}/${image_name}"
+			fi
+		fi
+	done
+
+	wal_sel=$(find "${wal_dir}" \
+		-maxdepth 1 \
+		-type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) \
+		-exec basename {} \; | sort | \
+		while read -r A; do
+			echo -en "$A\x00icon\x1f""${cch_dir}"/"$A\n"
+		done | $rofi_cmd)
+
+		[ -z "$wal_sel" ] && exit 1
+		cp -f "${wal_dir}/${wal_sel}" "$act_wal" && refresh
+}
+
+case $1 in
+	menu) menu ;;
+	refresh) refresh ;;
+	*) help && exit 1 ;;
+esac

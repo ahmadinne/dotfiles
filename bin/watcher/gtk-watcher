@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+CONFIG_DIR="$HOME/.config/gtk-4.0"
+CONFIG_FILE="$CONFIG_DIR/settings.ini"
+
+inotifywait -m -e close_write,moved_to,create "$CONFIG_DIR" --format "%f" | while read -r filename; do
+    if [[ "$filename" == "settings.ini" ]]; then
+        sleep 0.2
+        has_layout=false
+        
+        while IFS= read -r line || [[ -n "$line" ]]; do
+            if [[ "$line" == *"gtk-decoration-layout"* ]]; then
+                has_layout=true
+                break
+            fi
+        done < "$CONFIG_FILE"
+
+        if [[ "$has_layout" == false ]]; then
+            echo "gtk-decoration-layout=:" >> "$CONFIG_FILE"
+			echo "gtk-enable-animations=0" >> "$CONFIG_FILE"
+        fi
+        
+    fi
+done

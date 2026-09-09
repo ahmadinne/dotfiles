@@ -1,0 +1,30 @@
+set shell bash
+set shellopts '-eu'
+set ifs "\n"
+set cursorpreviewfmt "\033[7;2m"
+set previewer ~/.config/lf/preview.sh
+
+cmap <esc> cmd-interrupt
+cmap <c-c> cmd-interrupt
+map o &mimeopen $f
+map O &mimeopen --ask $f
+
+cmd open &{{
+    case $(file --mime-type -Lb $f) in
+        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        *) for f in $fx; do $OPENER $f >/dev/null 2>/dev/null & done;;
+    esac
+}}
+
+# hidden files
+map . :set hidden!
+
+# mkdir/touch & paste
+map a push %~/.config/bin/create<space>
+map p push :paste<space>
+
+# trash
+map d %set -f; printf "Trash $fx? [y/N] "; read ans; [ "$ans" = "y" ] && trash $fx || printf "trash cancelled."
+map D %set -f; printf "Delete $fx permanently? [y/N] "; read ans; [ "$ans" = "y" ] && rm -rf $fx && printf "success delete $fx" || printf "delete cancelled."
+map U %trash -u
+map R %trash -r

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+choice=$1
+
+[[ -z "$choice" ]] && exit 1
+
+if [[ "$2" == "move" || "$2" == "m" ]]; then
+	cmd="movetoworkspace"
+else
+	cmd="workspace"
+fi
+
+ws_info=$(hyprctl activeworkspace)
+ws_id=${ws_info#* ID }
+current_ws=${ws_id%% *}
+
+[[ "$current_ws" == "$choice" ]] && exit 0
+
+if [[ "$current_ws" -lt 11 ]]; then
+	hyprctl dispatch $cmd $choice
+else
+	hyprctl dispatch $cmd $((choice + 10))
+fi

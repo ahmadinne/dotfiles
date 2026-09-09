@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+input=$1
+
+[[ -z "$input" ]] && exit 1
+
+if [[ "$input" == *"/"* ]]; then
+	dir="${input%/*}"
+	mkdir -p "$dir"
+	touch "$input"
+else
+	touch "$input"
+fi

@@ -1,0 +1,19 @@
+* {
+	bg: #101010;
+	bg2: #171717;
+	bg3: #212121;
+	fg: #e8e3e3;
+	al: #424242;
+	black: #101010;
+	white: #e8e3e3;
+	blue: #8da3b9;
+	cyan: #8aa6a2;
+	red: #b66467;
+	green: #8c977d;
+	yellow: #d9bc8c;
+	purple: #a988b0;
+	border-radius: 0.2em;
+	background-color: @bg;
+	text-color: @fg;
+	font: "monospace 10";
+}

@@ -1,0 +1,75 @@
+configuration {
+	modi: "drun";
+	display-drun: "";
+	show-icons: true;
+	hover-select: true;
+	click-to-exit: true;
+	global-kb: true;
+	drun-display-format: "{icon}  {name}";
+	kb-row-up: "Up,Control+p";
+	kb-row-down: "Down,Control+n";
+	kb-cancel: "MousePrimary,Escape";
+	kb-accept-entry: "Control+y,Return";
+	me-select-entry: "";
+	me-accept-entry: "!MousePrimary";
+}
+
+@theme "/dev/null"
+@import "paradise.rasi"
+
+window {
+	location: south;
+	// width: 31%;
+	height: 28%;
+	y-offset: -5px;
+	spacing: 0;
+	children: [ box ];
+}
+
+box {
+	padding: 0.75em;
+	spacing: 0.5em;
+	children: [ content-area, entry ];
+}
+
+content-area {
+	orientation: horizontal;
+	children: [ listview, icon-current-entry ];
+	spacing: 20px;
+}
+
+entry {
+	background-color: @bg2;
+	placeholder: "Search...";
+	placeholder-color: @al;
+	padding: 0.75em;
+	expand: false;
+	cursor: text;
+	hide-cursor-on-empty: true;
+}
+
+icon-current-entry {
+	size: 250px;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+}
+
+element {
+  text-color: @al;
+  padding: 0.75em;
+}
+element selected {
+  text-color: @fg;
+}
+element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
+}
+
+listview {
+  lines: 10;    
+}
+
+listview, element, element selected, element-text, element-icon {
+  cursor: pointer;
+}

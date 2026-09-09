@@ -1,0 +1,81 @@
+configuration {
+	modi: "drun";
+	display-drun: "";
+	show-icons: true;
+	hover-select: true;
+	click-to-exit: true;
+	drun-display-format: "{icon}  {name}";
+	kb-row-up: "Up,Control+p";
+	kb-row-down: "Down,Control+n";
+	kb-cancel: "MousePrimary,Escape";
+	kb-accept-entry: "Control+y,Return";
+	me-select-entry: "";
+	me-accept-entry: "!MousePrimary";
+}
+
+@theme "/dev/null"
+@import "paradise.rasi"
+
+window {
+	location: south;
+	anchor: center;
+	width: 99%;
+	height: 32%;
+	y-offset: -5px;
+	children: [ base ];
+}
+
+base {
+	padding: 1em;
+	children: [ listview, bottom ];
+}
+
+bottom {
+	expand: false;
+	orientation: horizontal;
+	spacing: 0.5em;
+	children: [ num-filtered-rows, entry ];
+}
+
+entry {
+	padding: 0.75em;
+	placeholder: "Search Wallpaper...";
+	placeholder-color: @al;
+	background-color: @bg2;
+}
+
+num-filtered-rows {
+	padding: 0.75em 3em;
+	expand: false;
+	text-color: @al;
+	background-color: @bg2;
+}
+
+listview {
+	layout: vertical;
+	columns: 7;
+}
+
+listview, element, element selected, element-text, element-icon {
+  cursor: pointer;
+}
+
+element {
+	spacing: 0.5em;
+	text-color: @al;
+	orientation: vertical;
+}
+element selected {
+	text-color: @fg;
+}
+element-icon {
+	size: 20%;
+}
+element-text {
+  width: 10%;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+  background-color: inherit;
+  text-color: inherit;
+}
+

@@ -1,0 +1,192 @@
+@import "../colors.css";
+
+window#waybar {
+  background-color: transparent;
+  color: @foreground;
+	transition-property: background-color;
+	transition-duration: .5s;
+}
+window#waybar > box {
+  background-color: transparent;
+}
+
+#custom-empty {
+	color: transparent;
+	background: transparent;
+	padding: 50rem 70rem;
+}
+
+#both {
+	background-color: @black;
+	padding: 0.3rem;
+	border-radius: 0.2rem;
+	margin: 0.5em 0em;
+}
+
+#profile {
+	background-color: @module-bg;
+	border-radius: 0.1rem;
+	padding: 10 0;
+	margin: 5;
+	font-weight: bold;
+}
+#custom-wmname {
+	color: alpha(@foreground, 0.5)
+}
+
+#boxes {
+	background-color: @module-bg;
+	border-radius: 3;
+	padding:  10;
+	margin: 5;
+}
+#boxtengah {
+	margin: 11 0 1 0;
+}
+
+#network,
+#bluetooth,
+#custom-screenshot,
+#custom-clipboard,
+#custom-colorpicker,
+#custom-screenrecord {
+	background-color: @bg3;
+	border-radius: 4;
+	padding: 12 14;
+	margin: 0 10 0 0;
+	transition: .1s ease-in-out;
+}
+
+#custom-screenrecord {
+	margin-right: 0;
+}
+#custom-screenrecord.recording {
+	margin-right: 0; 
+	background-color: alpha(@red, 1);
+}
+#custom-screenrecord.recording:hover {
+	background-color: alpha(@red, 0.8);
+}
+
+#network.linked, #network.ethernet, #network.wifi {
+	background-color: alpha(@foreground, 0.2);
+}
+#bluetooth { }
+#custom-screenshot {
+	margin-right: 0;
+}
+#custom-clipboard { }
+#custom-colorpicker { }
+
+#network:hover,
+#bluetooth:hover,
+#custom-screenshot:hover,
+#custom-clipboard:hover,
+#custom-colorpicker:hover,
+#custom-screenrecord:hover {
+	background-color: alpha(@foreground, 0.1);
+}
+
+#slider {
+	background-color: @module-bg;
+	border-radius: 3;
+	padding: 3 8;
+	margin: 5;
+}
+
+#brightness {
+	margin: -5 0 0 0;
+}
+#custom-audio,
+#custom-brightness {
+	margin: 0 10;
+}
+
+#pulseaudio-slider slider,
+#backlight-slider slider {
+	min-height: 0px;
+	min-width: 0px;
+	opacity: 0;
+	border-radius: 0;
+	background-color: transparent;
+}
+#pulseaudio-slider trough,
+#backlight-slider trough {
+	min-height: 15px;
+	min-width: 113px;
+	border-radius: 4px;
+	background-color: alpha(@foreground, 0.05);
+	transition: .2s ease-in-out;
+}
+#pulseaudio-slider highlight,
+#backlight-slider highlight {
+	min-width: 0px;
+	border-radius: 4px;
+	background-color: @foreground;
+}
+#pulseaudio-slider trough:hover,
+#backlight-slider trough:hover {
+	background-color: @gray;
+}
+
+#music {
+	background-color: @module-bg;
+	border-radius: 3;
+	padding: 10;
+	margin: 5;
+}
+
+#image.thumbnail {
+  border-radius: 10;
+}
+
+#text {
+  color: @foreground;
+  padding: 10 0 0 0;
+  margin-top: 0;
+}
+#custom-title {
+	color: @foreground;
+}
+#custom-artist {
+  color: alpha(@foreground, 0.5);
+  margin: 5 0 0 0;
+}
+
+
+/* buttons */
+#button {
+	margin: 6 0 0 0;
+	border-radius: 6;
+}
+
+#custom-prev,
+#custom-next {
+	color: alpha(@foreground, 0.3);
+	padding: 5 18;
+	border-radius: 5;
+	transition: all .1s ease-in-out;
+}
+#custom-prev {}
+#custom-next {}
+#custom-prev:hover,
+#custom-next:hover {
+  background-color: @gray;
+  color: @foreground;
+}
+
+#custom-play {
+	transition: all .1s ease-in-out;
+	color: alpha(@foreground, 0.7);
+	padding: 0 18;
+	border-radius: 5;
+}
+#custom-play.stopped {
+	color: alpha(@foreground, 0.3);
+}
+#custom-play.paused { }
+#custom-play.playing { }
+#custom-play:hover {
+	background-color: @gray;
+	color: @foreground;
+}

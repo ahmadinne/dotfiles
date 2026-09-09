@@ -1,0 +1,10 @@
+{
+	"custom/empty": {
+		"format": "EMPTY",
+		"tooltip": false,
+		"cursor": false,
+		"on-click": "~/.config/bin/esc/escape",
+		"on-click-right": "~/.config/bin/esc/escape",
+		"on-click-middle": "~/.config/bin/esc/escape"
+	}
+}

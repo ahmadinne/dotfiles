@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+tmp=$(mktemp -d -t cclip_XXXXXX)
+trap 'rm -rf "$tmp"' EXIT
+
+function selection {
+	while IFS="	" read -r num mime_type things; do
+		case "$mime_type" in
+			image/*)
+				img="${tmp}/clip_${num}"
+				cclip get "$num" > "$img"
+				echo -en "$things\x00icon\x1f${img}\n"
+				;;
+			*)
+				echo "$things"
+				;;
+		esac
+	done < <(cclip list rowid,mime_type,preview)
+}
+
+choice=$(selection | rofi -i -dmenu -theme $HOME/.config/rofi/clip.rasi)
+
+while IFS="	" read -r num things; do
+	if [[ "$things" == "$choice" ]]; then
+		cclip copy "$num"
+		break
+	fi
+done < <(cclip list rowid,preview)
+

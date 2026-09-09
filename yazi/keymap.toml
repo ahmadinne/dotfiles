@@ -1,0 +1,5 @@
+[mgr]
+
+append_keymap = [
+	{ on = "T", run = "close", desc = "Close current tab" }
+]

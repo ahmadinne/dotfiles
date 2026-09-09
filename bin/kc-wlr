@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+function dwl {
+	while IFS=" " read -r mon string value; do
+		[[ "$value" == 1 ]] && activemon="$mon" && break
+	done < <(dwlmsg -go)
+
+	while IFS=" " read -r mon name appid pid; do
+		[[ "$mon" == "$activemon" && "$name" == "appid" ]] && active_pid="$pid" && break
+	done < <(dwlmsg -gc)
+
+	one="Yes"
+	two="No"
+	choice=$(echo -e "$one\n$two" | rofi -dmenu -i -config $HOME/.config/rofi/kill-confirmation.rasi)
+
+	case $choice in
+		$one) kill "$active_pid" && exit 0 || kill -9 "$active_pid" && exit 0 ;;
+		*) exit 1 ;;
+	esac
+}

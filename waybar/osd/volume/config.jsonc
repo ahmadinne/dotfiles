@@ -1,0 +1,28 @@
+{
+	"name": "volume",
+	"layer": "overlay",
+	"position": "bottom",
+	"height": 31,
+	"passthrough": true,
+	"exclusive": false,
+	"start_hidden": true,
+
+	"modules-center": ["group/base"],
+	"group/base": {
+		"orientation": "vertical",
+		"modules": [ 
+			"pulseaudio#text", 
+			"pulseaudio/slider" 
+		]
+	},
+	"pulseaudio#text": {
+		"format": "VOL {volume}",
+		"format-muted": "MT",
+		"justify": "center"
+	},
+	"pulseaudio/slider": {
+		"min": 0,
+		"max": 200,
+		"orientation": "horizontal"
+	}
+}

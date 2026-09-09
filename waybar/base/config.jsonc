@@ -1,0 +1,129 @@
+{
+	"layer":              "top",
+	"position":           "top",
+	"height":             32,
+	"width":              "100%",
+	"spacing":            0,
+	"fixed-center":       true,
+	"exclusive":		true,
+	"modules-left":       [ "group/top", "hyprland/window" ],
+	"modules-center":     [ "group/center" ],
+	"modules-right":      [ "group/right" ],
+
+	"custom/empty": {
+		"format": "{}",
+		"tooltip": false,
+		"exec": "~/.config/waybar/utilities/scripts/thumbnail"
+	},
+	"group/top": {
+		"orientation":      "inherit",
+		"modules":          [ "clock", "custom/split", "group/workspaces"]
+	},
+	"group/center": {
+		"orientation":      "inherit",
+		"modules":          [ "custom/utilities", "custom/launcher", "custom/empty" ]
+	},
+	"group/right": {
+		"orientation":      "inherit",
+		"modules":          [ "group/trayer", "custom/split", "battery" ]
+	},
+
+	// Secondary Group Area
+	"group/trayer": {
+		"orientation":      "inherit",
+		"modules":          [ "custom/tray", "tray" ],
+		"drawer": {
+			"transition-duration": 0,
+			"transition-left-to-right": false
+		}
+	},
+	"group/workspaces": {
+		"orientation":      "inherit",
+		"modules":          [ "custom/workspace", "hyprland/workspaces" ],
+		"drawer": {
+			"transition-duration": 0,
+			"transition-left-to-right": true
+		}
+	},
+
+	"custom/workspace": {
+		"format":           "{}",
+		"return-type":		"json",
+		"exec":						"~/.config/waybar/base/workspace/workspaces",
+		"tooltip":          false
+	},
+
+	"hyprland/workspaces": {
+		"disable-scroll":   true,
+		"format":           "{windows}",
+		"window-rewrite-default": ".",
+		"window-rewrite": {
+			"class<google-chrome>": "",
+			"class<alacritty>": "",
+			"class<discord>": ""
+		}
+	},
+
+	"battery": {
+		"states": {
+			"good": 80,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{capacity} %",
+		"tooltip": false,
+		"on-click": "pkill -USR1 -f 'waybar.*power.*config'"
+	},
+
+	// Custom Area
+	"custom/utilities": {
+		"format": "<span face='lucide'>&#58078;</span>",
+		"tooltip-format": "Utilities",
+		"on-click": "pkill -USR1 -f 'waybar.*utilities.*config'"
+	},
+	"custom/launcher": {
+		"format": "<span face='lucide'>&#57681;</span>",
+		"tooltip-format": "App Launcher",
+		"on-click": "~/.config/waybar/base/applauncher.sh"
+	},
+
+	// Group Right
+	"custom/tray": {  
+		"format": "<span face='lucide'>&#57454;</span>",
+		"tooltip": false
+	},
+	"custom/split": {
+		"format": "┃",
+		"tooltip": false
+	},
+
+	"tray": {
+		"icon-size": 16,
+		"spacing": 0 
+	},
+
+	"clock": {            
+		"interval": 60,
+		"format": "{:%H:%M}",
+		"tooltip": false,
+		"on-click":	"pkill -USR1 -f 'waybar.*calendar.*config'"
+		// "tooltip-format": "<tt><small>{calendar}</small></tt>",
+		// "calendar": {
+		// 	"iso8601": true,
+		// 	"mode": "year",
+		// 	"week-pos": "left",
+		// 	"format": {
+		// 		"months": "<span color='#d9bc8c'><b>{}</b></span>",
+		// 		"days": "<span color='#e8e3e3'><b>{}</b></span>",
+		// 		"weeks": "<span color='#d9bc8c'><b>W{}</b></span>",
+		// 		"weekdays": "<span color='#e8e3e3'><b>{}</b></span>",
+		// 		"today": "<span color='#d9bc8c'><b>{}</b></span>"
+		// 	}
+		// }
+	},
+
+	"hyprland/window": {
+		"max-length": 31
+	}
+
+}
